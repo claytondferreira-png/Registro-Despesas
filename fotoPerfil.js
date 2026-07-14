@@ -1,10 +1,10 @@
 // =============================
-// Foto de perfil local
-// Contabilize AI
+// FOTO DE PERFIL LOCAL
+// CONTABILIZE AI
 // =============================
 
 
-const selecionarFoto =
+const selecionarFoto = 
 document.getElementById("selecionarFoto");
 
 
@@ -12,84 +12,79 @@ const fotoPerfil =
 document.getElementById("fotoPerfil");
 
 
-
-
-// Carregar foto salva
+// Carrega foto salva
 
 const fotoSalva =
 localStorage.getItem("fotoPerfil");
 
 
+if(fotoSalva && fotoPerfil){
 
-if(fotoSalva){
-
-    fotoPerfil.src =
-    fotoSalva;
+    fotoPerfil.src = fotoSalva;
 
 }
 
 
 
 
-// Escolher nova foto
+// Escolher foto
 
 if(selecionarFoto){
 
 
     selecionarFoto.addEventListener(
-    "change",
-    ()=>{
+        "change",
+        function(){
 
 
-        const arquivo =
-        selecionarFoto.files[0];
+            const arquivo =
+            selecionarFoto.files[0];
+
+
+            if(!arquivo){
+
+                return;
+
+            }
 
 
 
-        if(!arquivo){
+            const leitor =
+            new FileReader();
 
-            return;
+
+
+            leitor.onload = function(event){
+
+
+                const imagem =
+                event.target.result;
+
+
+
+                if(fotoPerfil){
+
+                    fotoPerfil.src = imagem;
+
+                }
+
+
+
+                localStorage.setItem(
+                    "fotoPerfil",
+                    imagem
+                );
+
+
+            };
+
+
+
+            leitor.readAsDataURL(arquivo);
+
 
         }
-
-
-
-        const leitor =
-        new FileReader();
-
-
-
-        leitor.onload = function(e){
-
-
-            const imagem =
-            e.target.result;
-
-
-
-            fotoPerfil.src =
-            imagem;
-
-
-
-            localStorage.setItem(
-
-                "fotoPerfil",
-
-                imagem
-
-            );
-
-
-        };
-
-
-
-        leitor.readAsDataURL(arquivo);
-
-
-
-    });
+    );
 
 
 }
