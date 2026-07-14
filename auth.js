@@ -1,6 +1,7 @@
 // =============================
 // CONTABILIZE AI
-// Sistema de Login Firebase
+// Firebase Authentication
+// auth.js
 // =============================
 
 
@@ -13,7 +14,8 @@ import { initializeApp } from
 import { 
 getAuth,
 createUserWithEmailAndPassword,
-signInWithEmailAndPassword
+signInWithEmailAndPassword,
+sendPasswordResetEmail
 }
 from 
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -41,7 +43,8 @@ measurementId: "G-CME7DK2ZN2"
 };
 
 
-// Inicializar
+
+// Inicializar Firebase
 
 const app = initializeApp(firebaseConfig);
 
@@ -49,7 +52,7 @@ const auth = getAuth(app);
 
 
 
-// Elementos
+// Pegar elementos da tela
 
 const email = document.getElementById("email");
 
@@ -59,99 +62,220 @@ const entrar = document.getElementById("entrar");
 
 const criar = document.getElementById("criar");
 
+const recuperar = document.getElementById("recuperar");
+
 const mensagem = document.getElementById("mensagem");
 
 
 
-// Criar conta
+// =============================
+// CRIAR CONTA
+// =============================
 
 criar.addEventListener("click",()=>{
 
 
-createUserWithEmailAndPassword(
+    if(email.value === "" || senha.value === ""){
 
-auth,
+        mensagem.innerHTML =
+        "Preencha e-mail e senha.";
 
-email.value,
+        return;
 
-senha.value
-
-)
-
-.then(()=>{
+    }
 
 
-mensagem.innerHTML =
-"Conta criada com sucesso!";
+    createUserWithEmailAndPassword(
+
+        auth,
+
+        email.value,
+
+        senha.value
+
+    )
 
 
-setTimeout(()=>{
-
-window.location.href="index.html";
-
-},1500);
+    .then(()=>{
 
 
-})
+        mensagem.style.color="#16a34a";
+
+        mensagem.innerHTML =
+        "Conta criada com sucesso!";
 
 
-.catch((erro)=>{
+        setTimeout(()=>{
+
+            window.location.href="index.html";
+
+        },1500);
 
 
-mensagem.innerHTML =
-erro.message;
+    })
+
+
+    .catch((erro)=>{
+
+
+        mensagem.style.color="#dc2626";
+
+
+        if(erro.code==="auth/email-already-in-use"){
+
+            mensagem.innerHTML =
+            "Esse e-mail já possui uma conta.";
+
+        }
+
+        else if(erro.code==="auth/weak-password"){
+
+            mensagem.innerHTML =
+            "A senha precisa ter pelo menos 6 caracteres.";
+
+        }
+
+        else{
+
+            mensagem.innerHTML =
+            "Erro ao criar conta.";
+
+        }
+
+
+    });
 
 
 });
 
 
-});
 
-
-
-
-// Login
+// =============================
+// LOGIN
+// =============================
 
 entrar.addEventListener("click",()=>{
 
 
-signInWithEmailAndPassword(
-
-auth,
-
-email.value,
-
-senha.value
-
-)
-
-.then(()=>{
+    if(email.value === "" || senha.value === ""){
 
 
-mensagem.innerHTML =
-"Login realizado!";
+        mensagem.innerHTML =
+        "Preencha todos os campos.";
 
 
-setTimeout(()=>{
+        return;
+
+    }
 
 
-window.location.href="index.html";
+
+    signInWithEmailAndPassword(
+
+        auth,
+
+        email.value,
+
+        senha.value
+
+    )
 
 
-},1000);
+    .then(()=>{
 
 
-})
+        mensagem.style.color="#16a34a";
 
 
-.catch((erro)=>{
+        mensagem.innerHTML =
+        "Login realizado!";
 
 
-mensagem.innerHTML =
-"Usuário ou senha incorretos";
+        setTimeout(()=>{
+
+
+            window.location.href="index.html";
+
+
+        },1000);
+
+
+    })
+
+
+    .catch(()=>{
+
+
+        mensagem.style.color="#dc2626";
+
+
+        mensagem.innerHTML =
+        "E-mail ou senha incorretos.";
+
+
+    });
 
 
 });
+
+
+
+// =============================
+// RECUPERAR SENHA
+// =============================
+
+recuperar.addEventListener("click",()=>{
+
+
+    if(email.value===""){
+
+
+        mensagem.style.color="#dc2626";
+
+
+        mensagem.innerHTML =
+        "Digite seu e-mail primeiro.";
+
+
+        return;
+
+    }
+
+
+
+    sendPasswordResetEmail(
+
+        auth,
+
+        email.value
+
+    )
+
+
+    .then(()=>{
+
+
+        mensagem.style.color="#16a34a";
+
+
+        mensagem.innerHTML =
+        "Link enviado para seu e-mail.";
+
+
+    })
+
+
+    .catch(()=>{
+
+
+        mensagem.style.color="#dc2626";
+
+
+        mensagem.innerHTML =
+        "Não foi possível enviar o link.";
+
+
+    });
 
 
 });
