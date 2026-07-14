@@ -22,53 +22,25 @@
 <div class="container">
 
 
-
 <aside class="sidebar">
 
 <h1>💰 Contabilize AI</h1>
 
-
 <ul>
 
-<li>
-<a href="#dashboard">
-🏠 Dashboard
-</a>
-</li>
+<li><a href="#dashboard">🏠 Dashboard</a></li>
 
+<li><a href="#registro">➕ Novo Registro</a></li>
 
-<li>
-<a href="#registro">
-➕ Novo Registro
-</a>
-</li>
+<li><a href="#historico">📄 Histórico</a></li>
 
+<li><a href="#graficos">📊 Gráficos</a></li>
 
-<li>
-<a href="#historico">
-📄 Histórico
-</a>
-</li>
-
-
-<li>
-<a href="#graficos">
-📊 Gráficos
-</a>
-</li>
-
-
-<li>
-<a href="#editarPerfil">
-👤 Perfil
-</a>
-</li>
-
+<li><a href="#editarPerfil">👤 Perfil</a></li>
 
 </ul>
 
 </aside>
-
 
 
 
@@ -86,7 +58,7 @@
 <img
 id="fotoPerfil"
 src="https://i.imgur.com/6VBx3io.png"
-alt="Foto">
+alt="Foto de perfil">
 
 
 <h3 id="nomeUsuario">
@@ -108,13 +80,11 @@ Sair
 
 
 
-
 <div class="titulo">
 
 <h2>
 Painel Financeiro
 </h2>
-
 
 <p>
 Controle todos os seus gastos em um único lugar.
@@ -124,8 +94,6 @@ Controle todos os seus gastos em um único lugar.
 
 
 </header>
-
-
 
 
 
@@ -146,7 +114,6 @@ R$ 0,00
 </div>
 
 
-
 <div class="card">
 
 <h3>Receitas</h3>
@@ -158,8 +125,6 @@ R$ 0,00
 </div>
 
 
-
-
 <div class="card">
 
 <h3>Despesas</h3>
@@ -169,8 +134,6 @@ R$ 0,00
 </h1>
 
 </div>
-
-
 
 
 <div class="card">
@@ -191,31 +154,22 @@ R$ 0,00
 
 
 
-
 <section id="registro" class="box">
 
 
-<h2>
-Novo Registro
-</h2>
+<h2>Novo Registro</h2>
 
 
-<label>
-Descrição
-</label>
+<label>Descrição</label>
 
-
-<input
+<input 
 id="descricao"
 type="text"
 placeholder="Ex: Mercado">
 
 
 
-<label>
-Valor
-</label>
-
+<label>Valor</label>
 
 <input
 id="valor"
@@ -224,74 +178,45 @@ placeholder="0.00">
 
 
 
-
-
-<label>
-Categoria
-</label>
-
+<label>Categoria</label>
 
 <select id="categoria">
 
 <option>Mercado</option>
-
 <option>Alimentação</option>
-
 <option>Transporte</option>
-
 <option>Casa</option>
-
 <option>Lazer</option>
-
 <option>Saúde</option>
-
 <option>Educação</option>
-
 <option>Salário</option>
-
 <option>Outros</option>
-
 
 </select>
 
 
 
-
-
-<label>
-Tipo
-</label>
-
+<label>Tipo</label>
 
 <select id="tipo">
-
 
 <option value="receita">
 Receita
 </option>
 
-
 <option value="despesa">
 Despesa
 </option>
-
 
 </select>
 
 
 
-
-
-<label>
-Data
-</label>
-
+<label>Data</label>
 
 <input
 id="data"
 type="date">
-
-
 
 
 
@@ -309,13 +234,10 @@ Salvar Registro
 
 
 
-
 <section id="historico" class="box">
 
 
-<h2>
-Histórico
-</h2>
+<h2>Histórico</h2>
 
 
 <input
@@ -325,7 +247,6 @@ placeholder="Pesquisar...">
 
 
 <table>
-
 
 <thead>
 
@@ -348,12 +269,9 @@ placeholder="Pesquisar...">
 </thead>
 
 
-
 <tbody id="tabela">
 
-
 </tbody>
-
 
 
 </table>
@@ -366,13 +284,10 @@ placeholder="Pesquisar...">
 
 
 
-
 <section id="graficos" class="box">
 
 
-<h2>
-Gráficos
-</h2>
+<h2>Gráficos</h2>
 
 
 <canvas id="graficoPizza"></canvas>
@@ -389,7 +304,6 @@ Gráficos
 
 
 
-
 <section class="box" id="editarPerfil">
 
 
@@ -398,11 +312,21 @@ Meu Perfil
 </h2>
 
 
+<label>
+Foto de Perfil
+</label>
+
+
+<input
+type="file"
+id="selecionarFoto"
+accept="image/*">
+
+
 
 <label>
 Nome
 </label>
-
 
 
 <input
@@ -419,10 +343,7 @@ Salvar Perfil
 </button>
 
 
-
 </section>
-
-
 
 
 
@@ -437,25 +358,21 @@ Salvar Perfil
 
 
 
-
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 <script type="module" src="protect.js"></script>
 
-
 <script type="module" src="perfil.js"></script>
-
 
 <script type="module" src="editarPerfil.js"></script>
 
+<script src="fotoPerfil.js"></script>
 
 <script src="script.js"></script>
 
 
 
 </body>
-
 
 </html>
