@@ -21,7 +21,7 @@ const tipo = document.getElementById("tipo");
 const data = document.getElementById("data");
 
 const salvar = document.getElementById("salvar");
-
+alert(salvar);
 const tabela = document.getElementById("tabela");
 
 const saldo = document.getElementById("saldo");
