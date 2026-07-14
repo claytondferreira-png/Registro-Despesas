@@ -18,6 +18,7 @@ from
 
 
 
+
 // Configuração Firebase
 
 const firebaseConfig = {
@@ -40,7 +41,7 @@ measurementId: "G-CME7DK2ZN2"
 
 
 
-// Inicializar
+// Inicializar Firebase
 
 const app = initializeApp(firebaseConfig);
 
@@ -48,48 +49,59 @@ const auth = getAuth(app);
 
 
 
+
 // Elementos
 
-const nomeUsuario =
+const nomeUsuario = 
 document.getElementById("nomeUsuario");
 
 
-const emailUsuario =
+const emailUsuario = 
 document.getElementById("emailUsuario");
 
 
-const sair =
+const fotoPerfil = 
+document.getElementById("fotoPerfil");
+
+
+const sair = 
 document.getElementById("sair");
 
 
 
-const fotoPerfil =
-document.getElementById("fotoPerfil");
 
+// Carregar usuário
 
-
-
-// Ver usuário logado
-
-onAuthStateChanged(auth,(usuario)=>{
+onAuthStateChanged(auth, async (usuario)=>{
 
 
     if(usuario){
 
 
+        await usuario.reload();
+
+
+
+        const usuarioAtual = auth.currentUser;
+
+
+
         nomeUsuario.innerHTML =
-        usuario.displayName || "Usuário";
+        usuarioAtual.displayName || "Usuário";
+
 
 
         emailUsuario.innerHTML =
-        usuario.email;
+        usuarioAtual.email;
 
 
 
-        if(usuario.photoURL){
+        if(usuarioAtual.photoURL){
+
 
             fotoPerfil.src =
-            usuario.photoURL;
+            usuarioAtual.photoURL;
+
 
         }
 
@@ -102,28 +114,40 @@ onAuthStateChanged(auth,(usuario)=>{
 
 
 
+
+
 // Botão sair
 
 if(sair){
-    sair.onclick = function(){
+
+
+    sair.onclick = ()=>{
+
 
         signOut(auth)
 
         .then(()=>{
 
-            window.location.href = "login.html";
+
+            window.location.href =
+            "login.html";
+
 
         })
 
         .catch((erro)=>{
 
+
             console.log(
-                "Erro ao sair:",
-                erro
+            "Erro ao sair:",
+            erro
             );
+
 
         });
 
+
     };
+
 
 }
