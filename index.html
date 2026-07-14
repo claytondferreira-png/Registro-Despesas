@@ -16,13 +16,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 
-<link 
-rel="stylesheet"
+<link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
 
 
 </head>
-
 
 
 <body>
@@ -33,7 +31,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
 
 
 <aside class="sidebar">
-
 
 <h1>
 💰 Contabilize AI
@@ -69,18 +66,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
 </a>
 </li>
 
-
-<li>
-<a href="#editarPerfil">
-👤 Perfil
-</a>
-</li>
-
-
 </ul>
 
-
 </aside>
+
 
 
 
@@ -89,17 +78,47 @@ href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
 <main>
 
 
-
 <header class="topo">
 
 
 <div class="perfil">
 
 
+
+<div class="fotoContainer">
+
+
 <img
 id="fotoPerfil"
 src="https://i.imgur.com/6VBx3io.png"
 alt="Foto perfil">
+
+
+
+<div id="menuPerfil">
+
+
+<button id="editarFoto">
+📷 Alterar foto
+</button>
+
+
+<button id="editarNome">
+✏️ Editar nome
+</button>
+
+
+<button id="sair">
+🚪 Sair
+</button>
+
+
+</div>
+
+
+</div>
+
+
 
 
 
@@ -114,12 +133,16 @@ email@email.com
 
 
 
-<button id="sair">
-Sair
-</button>
+<input
+type="file"
+id="selecionarFoto"
+accept="image/*"
+hidden>
+
 
 
 </div>
+
 
 
 
@@ -140,7 +163,6 @@ Controle todos os seus gastos em um único lugar.
 </div>
 
 
-
 </header>
 
 
@@ -149,8 +171,9 @@ Controle todos os seus gastos em um único lugar.
 
 
 
-<section id="dashboard" class="cards">
 
+
+<section id="dashboard" class="cards">
 
 
 <div class="card">
@@ -211,6 +234,7 @@ Registros
 
 
 </section>
+
 
 
 
@@ -336,6 +360,7 @@ Salvar Registro
 
 
 
+
 <section id="historico" class="box">
 
 
@@ -377,6 +402,7 @@ placeholder="Pesquisar...">
 
 <tbody id="tabela">
 
+
 </tbody>
 
 
@@ -385,6 +411,7 @@ placeholder="Pesquisar...">
 
 
 </section>
+
 
 
 
@@ -414,39 +441,17 @@ Gráficos
 
 
 
-<section id="editarPerfil" class="box">
 
-
-<h2>
-Meu Perfil
-</h2>
-
-
-
-<label>
-Foto de Perfil
-</label>
-
-
-<input
-type="file"
-id="selecionarFoto"
-accept="image/*">
-
-
-
+<!-- ÁREA ESCONDIDA DE CORTE -->
 
 
 <div id="areaCorte">
 
 
-<img
-id="imagemCorte">
+<img id="imagemCorte">
 
 
 </div>
-
-
 
 
 
@@ -458,32 +463,6 @@ Salvar Foto
 
 
 
-
-
-
-<label>
-Nome
-</label>
-
-
-
-<input
-id="novoNome"
-type="text"
-placeholder="Digite seu nome">
-
-
-
-
-
-<button id="salvarPerfil">
-
-Salvar Perfil
-
-</button>
-
-
-</section>
 
 
 
@@ -500,13 +479,13 @@ Salvar Perfil
 
 
 
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-<script 
-src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js">
-</script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
 
 
 <script type="module" src="protect.js"></script>
@@ -515,12 +494,12 @@ src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js">
 
 <script type="module" src="editarPerfil.js"></script>
 
+
 <script src="fotoPerfil.js"></script>
 
 <script src="cortarFoto.js"></script>
 
 <script src="script.js"></script>
-
 
 
 </body>
