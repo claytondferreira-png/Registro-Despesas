@@ -22,23 +22,54 @@
 <div class="container">
 
 
+
 <aside class="sidebar">
 
 <h1>💰 Contabilize AI</h1>
 
+
 <ul>
 
-<li><a href="#dashboard">🏠 Dashboard</a></li>
+<li>
+<a href="#dashboard">
+🏠 Dashboard
+</a>
+</li>
 
-<li><a href="#registro">➕ Novo Registro</a></li>
 
-<li><a href="#historico">📄 Histórico</a></li>
+<li>
+<a href="#registro">
+➕ Novo Registro
+</a>
+</li>
 
-<li><a href="#graficos">📊 Gráficos</a></li>
+
+<li>
+<a href="#historico">
+📄 Histórico
+</a>
+</li>
+
+
+<li>
+<a href="#graficos">
+📊 Gráficos
+</a>
+</li>
+
+
+<li>
+<a href="#editarPerfil">
+👤 Perfil
+</a>
+</li>
+
 
 </ul>
 
 </aside>
+
+
 
 
 
@@ -52,7 +83,7 @@
 <div class="perfil">
 
 
-<img 
+<img
 id="fotoPerfil"
 src="https://i.imgur.com/6VBx3io.png"
 alt="Foto">
@@ -76,6 +107,8 @@ Sair
 </div>
 
 
+
+
 <div class="titulo">
 
 <h2>
@@ -96,6 +129,9 @@ Controle todos os seus gastos em um único lugar.
 
 
 
+
+
+
 <section id="dashboard" class="cards">
 
 
@@ -110,6 +146,7 @@ R$ 0,00
 </div>
 
 
+
 <div class="card">
 
 <h3>Receitas</h3>
@@ -121,6 +158,8 @@ R$ 0,00
 </div>
 
 
+
+
 <div class="card">
 
 <h3>Despesas</h3>
@@ -130,6 +169,8 @@ R$ 0,00
 </h1>
 
 </div>
+
+
 
 
 <div class="card">
@@ -149,44 +190,46 @@ R$ 0,00
 
 
 
+
+
 <section id="registro" class="box">
 
 
-<h2>Novo Registro</h2>
+<h2>
+Novo Registro
+</h2>
 
 
-<div class="grid">
+<label>
+Descrição
+</label>
 
 
-<div>
-
-<label>Descrição</label>
-
-<input 
+<input
 id="descricao"
 type="text"
 placeholder="Ex: Mercado">
 
-</div>
 
 
+<label>
+Valor
+</label>
 
-<div>
 
-<label>Valor</label>
-
-<input 
+<input
 id="valor"
 type="number"
 placeholder="0.00">
 
-</div>
 
 
 
-<div>
 
-<label>Categoria</label>
+<label>
+Categoria
+</label>
+
 
 <select id="categoria">
 
@@ -208,18 +251,20 @@ placeholder="0.00">
 
 <option>Outros</option>
 
+
 </select>
 
-</div>
 
 
 
 
-<div>
+<label>
+Tipo
+</label>
 
-<label>Tipo</label>
 
 <select id="tipo">
+
 
 <option value="receita">
 Receita
@@ -233,24 +278,20 @@ Despesa
 
 </select>
 
-</div>
 
 
 
 
-<div>
+<label>
+Data
+</label>
 
-<label>Data</label>
 
 <input
 id="data"
 type="date">
 
-</div>
 
-
-
-</div>
 
 
 
@@ -268,10 +309,13 @@ Salvar Registro
 
 
 
+
 <section id="historico" class="box">
 
 
-<h2>Histórico</h2>
+<h2>
+Histórico
+</h2>
 
 
 <input
@@ -304,10 +348,12 @@ placeholder="Pesquisar...">
 </thead>
 
 
+
 <tbody id="tabela">
 
 
 </tbody>
+
 
 
 </table>
@@ -324,7 +370,9 @@ placeholder="Pesquisar...">
 <section id="graficos" class="box">
 
 
-<h2>Gráficos</h2>
+<h2>
+Gráficos
+</h2>
 
 
 <canvas id="graficoPizza"></canvas>
@@ -339,6 +387,47 @@ placeholder="Pesquisar...">
 
 
 
+
+
+
+<section class="box" id="editarPerfil">
+
+
+<h2>
+Meu Perfil
+</h2>
+
+
+
+<label>
+Nome
+</label>
+
+
+
+<input
+id="novoNome"
+type="text"
+placeholder="Digite seu nome">
+
+
+
+<button id="salvarPerfil">
+
+Salvar Perfil
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
 </main>
 
 
@@ -348,16 +437,25 @@ placeholder="Pesquisar...">
 
 
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 <script type="module" src="protect.js"></script>
 
+
 <script type="module" src="perfil.js"></script>
+
+
+<script type="module" src="editarPerfil.js"></script>
+
 
 <script src="script.js"></script>
 
 
 
 </body>
+
 
 </html>
