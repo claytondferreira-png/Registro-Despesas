@@ -9,11 +9,20 @@
 
 <title>Contabilize AI</title>
 
+
 <link rel="stylesheet" href="style.css">
+
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
+<link 
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+
+
 </head>
+
 
 
 <body>
@@ -22,25 +31,57 @@
 <div class="container">
 
 
+
 <aside class="sidebar">
 
-<h1>💰 Contabilize AI</h1>
+
+<h1>
+💰 Contabilize AI
+</h1>
+
 
 <ul>
 
-<li><a href="#dashboard">🏠 Dashboard</a></li>
+<li>
+<a href="#dashboard">
+🏠 Dashboard
+</a>
+</li>
 
-<li><a href="#registro">➕ Novo Registro</a></li>
 
-<li><a href="#historico">📄 Histórico</a></li>
+<li>
+<a href="#registro">
+➕ Novo Registro
+</a>
+</li>
 
-<li><a href="#graficos">📊 Gráficos</a></li>
 
-<li><a href="#editarPerfil">👤 Perfil</a></li>
+<li>
+<a href="#historico">
+📄 Histórico
+</a>
+</li>
+
+
+<li>
+<a href="#graficos">
+📊 Gráficos
+</a>
+</li>
+
+
+<li>
+<a href="#editarPerfil">
+👤 Perfil
+</a>
+</li>
+
 
 </ul>
 
+
 </aside>
+
 
 
 
@@ -58,7 +99,8 @@
 <img
 id="fotoPerfil"
 src="https://i.imgur.com/6VBx3io.png"
-alt="Foto de perfil">
+alt="Foto perfil">
+
 
 
 <h3 id="nomeUsuario">
@@ -71,6 +113,7 @@ email@email.com
 </p>
 
 
+
 <button id="sair">
 Sair
 </button>
@@ -80,17 +123,22 @@ Sair
 
 
 
+
 <div class="titulo">
+
 
 <h2>
 Painel Financeiro
 </h2>
 
+
 <p>
 Controle todos os seus gastos em um único lugar.
 </p>
 
+
 </div>
+
 
 
 </header>
@@ -100,12 +148,16 @@ Controle todos os seus gastos em um único lugar.
 
 
 
+
 <section id="dashboard" class="cards">
+
 
 
 <div class="card">
 
-<h3>Saldo</h3>
+<h3>
+Saldo
+</h3>
 
 <h1 id="saldo">
 R$ 0,00
@@ -114,9 +166,12 @@ R$ 0,00
 </div>
 
 
+
 <div class="card">
 
-<h3>Receitas</h3>
+<h3>
+Receitas
+</h3>
 
 <h1 id="receitas">
 R$ 0,00
@@ -125,9 +180,13 @@ R$ 0,00
 </div>
 
 
+
+
 <div class="card">
 
-<h3>Despesas</h3>
+<h3>
+Despesas
+</h3>
 
 <h1 id="despesas">
 R$ 0,00
@@ -136,9 +195,13 @@ R$ 0,00
 </div>
 
 
+
+
 <div class="card">
 
-<h3>Registros</h3>
+<h3>
+Registros
+</h3>
 
 <h1 id="quantidade">
 0
@@ -154,22 +217,32 @@ R$ 0,00
 
 
 
+
 <section id="registro" class="box">
 
 
-<h2>Novo Registro</h2>
+<h2>
+Novo Registro
+</h2>
 
 
-<label>Descrição</label>
 
-<input 
+<label>
+Descrição
+</label>
+
+
+<input
 id="descricao"
 type="text"
 placeholder="Ex: Mercado">
 
 
 
-<label>Valor</label>
+<label>
+Valor
+</label>
+
 
 <input
 id="valor"
@@ -178,45 +251,73 @@ placeholder="0.00">
 
 
 
-<label>Categoria</label>
+<label>
+Categoria
+</label>
+
 
 <select id="categoria">
 
+
 <option>Mercado</option>
+
 <option>Alimentação</option>
+
 <option>Transporte</option>
+
 <option>Casa</option>
+
 <option>Lazer</option>
+
 <option>Saúde</option>
+
 <option>Educação</option>
+
 <option>Salário</option>
+
 <option>Outros</option>
+
 
 </select>
 
 
 
-<label>Tipo</label>
+
+
+<label>
+Tipo
+</label>
+
 
 <select id="tipo">
+
 
 <option value="receita">
 Receita
 </option>
 
+
 <option value="despesa">
 Despesa
 </option>
+
 
 </select>
 
 
 
-<label>Data</label>
+
+
+<label>
+Data
+</label>
+
 
 <input
 id="data"
 type="date">
+
+
 
 
 
@@ -234,10 +335,13 @@ Salvar Registro
 
 
 
+
 <section id="historico" class="box">
 
 
-<h2>Histórico</h2>
+<h2>
+Histórico
+</h2>
 
 
 <input
@@ -247,6 +351,7 @@ placeholder="Pesquisar...">
 
 
 <table>
+
 
 <thead>
 
@@ -269,9 +374,11 @@ placeholder="Pesquisar...">
 </thead>
 
 
+
 <tbody id="tabela">
 
 </tbody>
+
 
 
 </table>
@@ -284,10 +391,13 @@ placeholder="Pesquisar...">
 
 
 
+
 <section id="graficos" class="box">
 
 
-<h2>Gráficos</h2>
+<h2>
+Gráficos
+</h2>
 
 
 <canvas id="graficoPizza"></canvas>
@@ -304,12 +414,13 @@ placeholder="Pesquisar...">
 
 
 
-<section class="box" id="editarPerfil">
+<section id="editarPerfil" class="box">
 
 
 <h2>
 Meu Perfil
 </h2>
+
 
 
 <label>
@@ -324,15 +435,44 @@ accept="image/*">
 
 
 
+
+
+<div id="areaCorte">
+
+
+<img
+id="imagemCorte">
+
+
+</div>
+
+
+
+
+
+<button id="salvarFoto">
+
+Salvar Foto
+
+</button>
+
+
+
+
+
+
 <label>
 Nome
 </label>
+
 
 
 <input
 id="novoNome"
 type="text"
 placeholder="Digite seu nome">
+
+
 
 
 
@@ -349,6 +489,7 @@ Salvar Perfil
 
 
 
+
 </main>
 
 
@@ -358,7 +499,14 @@ Salvar Perfil
 
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script 
+src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js">
+</script>
+
 
 
 <script type="module" src="protect.js"></script>
@@ -368,6 +516,8 @@ Salvar Perfil
 <script type="module" src="editarPerfil.js"></script>
 
 <script src="fotoPerfil.js"></script>
+
+<script src="cortarFoto.js"></script>
 
 <script src="script.js"></script>
 
