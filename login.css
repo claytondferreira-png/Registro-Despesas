@@ -1,0 +1,264 @@
+/* ============================
+   CONTABILIZE AI
+   LOGIN CSS
+============================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:"Poppins",sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #2563eb
+    );
+
+}
+
+
+/* CONTAINER */
+
+.login-container{
+
+    width:100%;
+    padding:20px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+
+/* CARD LOGIN */
+
+.login-box{
+
+    width:420px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
+
+    text-align:center;
+
+    animation:aparecer .5s ease;
+
+}
+
+
+
+.login-box h1{
+
+    font-size:32px;
+
+    color:#2563eb;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.subtitulo{
+
+    color:#64748b;
+
+    font-size:14px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.login-box h2{
+
+    margin-bottom:25px;
+
+    color:#1e293b;
+
+}
+
+
+
+/* INPUTS */
+
+.login-box input{
+
+    width:100%;
+
+    padding:16px;
+
+    margin-bottom:15px;
+
+    border-radius:12px;
+
+    border:1px solid #e5e7eb;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+
+
+.login-box input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+
+
+/* BOTÕES */
+
+.login-box button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    margin-top:10px;
+
+    transition:.3s;
+
+}
+
+
+
+/* ENTRAR */
+
+#entrar{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+
+#entrar:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+/* CRIAR CONTA */
+
+#criar{
+
+    background:#e2e8f0;
+
+    color:#1e293b;
+
+}
+
+
+
+#criar:hover{
+
+    background:#cbd5e1;
+
+}
+
+
+
+/* MENSAGEM */
+
+#mensagem{
+
+    margin-top:20px;
+
+    font-size:14px;
+
+    color:#dc2626;
+
+}
+
+
+
+/* ANIMAÇÃO */
+
+@keyframes aparecer{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* CELULAR */
+
+@media(max-width:500px){
+
+
+.login-box{
+
+    width:100%;
+
+    padding:30px 20px;
+
+}
+
+
+.login-box h1{
+
+    font-size:26px;
+
+}
+
+
+}
