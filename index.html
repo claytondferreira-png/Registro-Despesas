@@ -1,227 +1,275 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contabilize AI</title>
 
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script type="module" src="protect.js"></script>
+<title>Contabilize AI</title>
 
-<script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
 
 <body>
 
+
 <div class="container">
 
-    <!-- SIDEBAR -->
+
     <aside class="sidebar">
 
         <h1>💰 Contabilize AI</h1>
 
         <ul>
+
             <li><a href="#dashboard">🏠 Dashboard</a></li>
+
             <li><a href="#registro">➕ Novo Registro</a></li>
+
             <li><a href="#historico">📄 Histórico</a></li>
+
             <li><a href="#graficos">📊 Gráficos</a></li>
+
         </ul>
 
     </aside>
 
-    <!-- CONTEÚDO -->
+
+
     <main>
+
 
         <header>
 
-            <div>
-                <h2>Painel Financeiro</h2>
-                <p>Controle todos os seus gastos em um único lugar.</p>
-            </div>
+            <h2>Painel Financeiro</h2>
+
+            <p>
+            Controle todos os seus gastos em um único lugar.
+            </p>
 
         </header>
 
-        <!-- DASHBOARD -->
+
+
         <section id="dashboard" class="cards">
 
-            <div class="card saldo">
+
+            <div class="card">
+
                 <h3>Saldo</h3>
-                <h1 id="saldo">R$ 0,00</h1>
+
+                <h1 id="saldo">
+                R$ 0,00
+                </h1>
+
             </div>
 
-            <div class="card receita">
+
+            <div class="card">
+
                 <h3>Receitas</h3>
-                <h1 id="receitas">R$ 0,00</h1>
+
+                <h1 id="receitas">
+                R$ 0,00
+                </h1>
+
             </div>
 
-            <div class="card despesa">
+
+            <div class="card">
+
                 <h3>Despesas</h3>
-                <h1 id="despesas">R$ 0,00</h1>
+
+                <h1 id="despesas">
+                R$ 0,00
+                </h1>
+
             </div>
 
-            <div class="card total">
+
+            <div class="card">
+
                 <h3>Registros</h3>
-                <h1 id="quantidade">0</h1>
+
+                <h1 id="quantidade">
+                0
+                </h1>
+
             </div>
+
 
         </section>
 
-        <!-- NOVO REGISTRO -->
+
+
+
         <section id="registro" class="box">
+
 
             <h2>Novo Registro</h2>
 
-            <div class="grid">
 
-                <div>
-                    <label>Descrição</label>
-                    <input
-                        type="text"
-                        id="descricao"
-                        placeholder="Ex: Mercado"
-                    >
-                </div>
+            <label>Descrição</label>
 
-                <div>
-                    <label>Valor</label>
-                    <input
-                        type="number"
-                        id="valor"
-                        placeholder="0.00"
-                    >
-                </div>
+            <input 
+            id="descricao"
+            type="text"
+            placeholder="Ex: Mercado">
 
-                <div>
-                    <label>Categoria</label>
 
-                    <select id="categoria">
-
-                        <option>Mercado</option>
-                        <option>Alimentação</option>
-                        <option>Transporte</option>
-                        <option>Casa</option>
-                        <option>Lazer</option>
-                        <option>Saúde</option>
-                        <option>Educação</option>
-                        <option>Salário</option>
-                        <option>Outros</option>
-
-                    </select>
-
-                </div>
-
-                <div>
-
-                    <label>Tipo</label>
-
-                    <select id="tipo">
-
-                        <option value="receita">Receita</option>
-                        <option value="despesa">Despesa</option>
-
-                    </select>
-
-                </div>
-
-                <div>
-
-                    <label>Data</label>
-
-                    <input
-                        type="date"
-                        id="data"
-                    >
-
-                </div>
-
-            </div>
-
-            <button id="salvar">
-                Salvar Registro
-            </button>
-
-        </section>
-
-        <!-- FILTRO -->
-
-        <section class="box">
-
-            <h2>Pesquisar</h2>
+            <label>Valor</label>
 
             <input
-                type="text"
-                id="pesquisa"
-                placeholder="Pesquisar por descrição ou categoria..."
-            >
+            id="valor"
+            type="number"
+            placeholder="0.00">
+
+
+            <label>Categoria</label>
+
+            <select id="categoria">
+
+                <option>Mercado</option>
+                <option>Alimentação</option>
+                <option>Transporte</option>
+                <option>Casa</option>
+                <option>Lazer</option>
+                <option>Saúde</option>
+                <option>Educação</option>
+                <option>Salário</option>
+                <option>Outros</option>
+
+            </select>
+
+
+
+            <label>Tipo</label>
+
+            <select id="tipo">
+
+                <option value="receita">
+                Receita
+                </option>
+
+                <option value="despesa">
+                Despesa
+                </option>
+
+            </select>
+
+
+
+            <label>Data</label>
+
+            <input 
+            id="data"
+            type="date">
+
+
+            <button id="salvar">
+
+                Salvar Registro
+
+            </button>
+
+
 
         </section>
 
-        <!-- HISTÓRICO -->
 
-        <section
-            id="historico"
-            class="box"
-        >
+
+
+
+        <section id="historico" class="box">
+
 
             <h2>Histórico</h2>
 
+
+            <input 
+            id="pesquisa"
+            placeholder="Pesquisar...">
+
+
+
             <table>
+
 
                 <thead>
 
                     <tr>
 
                         <th>Data</th>
+
                         <th>Descrição</th>
+
                         <th>Categoria</th>
+
                         <th>Tipo</th>
+
                         <th>Valor</th>
+
                         <th>Ação</th>
 
                     </tr>
 
                 </thead>
 
+
                 <tbody id="tabela">
+
 
                 </tbody>
 
+
             </table>
 
-        </section>
-
-        <!-- GRÁFICOS -->
-
-        <section
-            id="graficos"
-            class="graficos"
-        >
-
-            <div class="box">
-
-                <h2>Receitas x Despesas</h2>
-
-                <canvas id="graficoPizza"></canvas>
-
-            </div>
-
-            <div class="box">
-
-                <h2>Gastos por Categoria</h2>
-
-                <canvas id="graficoBarra"></canvas>
-
-            </div>
 
         </section>
+
+
+
+
+
+        <section id="graficos" class="box">
+
+
+            <h2>Gráficos</h2>
+
+
+            <canvas id="graficoPizza"></canvas>
+
+
+            <canvas id="graficoBarra"></canvas>
+
+
+        </section>
+
+
 
     </main>
 
+
 </div>
+
+
+
+
+<!-- SCRIPTS NO FINAL -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="module" src="protect.js"></script>
 
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
