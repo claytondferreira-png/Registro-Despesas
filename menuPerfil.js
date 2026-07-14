@@ -1,3 +1,4 @@
+alert("menu carregou");
 const fotoPerfil = document.getElementById("fotoPerfil");
 const menuPerfil = document.getElementById("menuPerfil");
 
