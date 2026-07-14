@@ -16,57 +16,50 @@ body{
 }
 
 
-
 .container{
-
-    display:flex;
 
     min-height:100vh;
 
 }
 
 
-
-/* SIDEBAR */
+/* MENU */
 
 .sidebar{
-
-    width:260px;
 
     background:#121212;
 
     color:white;
 
-    padding:25px;
+    padding:15px;
+
+    text-align:center;
 
 }
-
 
 
 .sidebar h1{
 
-    font-size:22px;
+    font-size:20px;
 
-    margin-bottom:40px;
+    margin-bottom:15px;
 
 }
-
 
 
 .sidebar ul{
 
     list-style:none;
 
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
 }
-
-
-
-.sidebar li{
-
-    margin-bottom:20px;
-
-}
-
 
 
 .sidebar a{
@@ -75,13 +68,7 @@ body{
 
     text-decoration:none;
 
-}
-
-
-
-.sidebar a:hover{
-
-    color:#d4af37;
+    font-size:13px;
 
 }
 
@@ -93,9 +80,7 @@ body{
 
 main{
 
-    flex:1;
-
-    padding:30px;
+    padding:15px;
 
 }
 
@@ -107,15 +92,7 @@ main{
 
 .topo{
 
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
     text-align:center;
-
-    margin-bottom:35px;
 
 }
 
@@ -133,9 +110,6 @@ main{
 
 
 
-
-/* FOTO */
-
 .fotoContainer{
 
     position:relative;
@@ -146,11 +120,13 @@ main{
 
 
 
+
+
 #fotoPerfil{
 
-    width:90px;
+    width:85px;
 
-    height:90px;
+    height:85px;
 
     border-radius:50%;
 
@@ -163,33 +139,36 @@ main{
 
 
 
+
 /* MENU DA FOTO */
+
 
 #menuPerfil{
 
     position:absolute;
 
-    top:105px;
+    top:95px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    width:160px;
+    width:170px;
 
     background:white;
 
-    border-radius:15px;
-
     padding:10px;
+
+    border-radius:15px;
 
     box-shadow:0 5px 20px rgba(0,0,0,.2);
 
     display:none;
 
-    z-index:10;
+    z-index:100;
 
 }
+
 
 
 
@@ -209,11 +188,10 @@ main{
 
     color:#222;
 
-    cursor:pointer;
-
     font-size:13px;
 
 }
+
 
 
 
@@ -224,28 +202,6 @@ main{
     color:white;
 
 }
-
-
-
-
-
-.perfil h3{
-
-    margin-top:10px;
-
-}
-
-
-
-.perfil p{
-
-    font-size:13px;
-
-    color:#777;
-
-}
-
-
 
 
 
@@ -261,8 +217,27 @@ main{
 
 
 
+#nomeUsuario{
 
-/* TÍTULO */
+    margin-top:10px;
+
+    font-size:18px;
+
+}
+
+
+
+#emailUsuario{
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+
+
+
 
 .titulo{
 
@@ -276,13 +251,16 @@ main{
 
 /* CARDS */
 
+
 .cards{
 
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:1fr;
 
-    gap:20px;
+    gap:15px;
+
+    margin-top:25px;
 
 }
 
@@ -292,7 +270,7 @@ main{
 
     background:white;
 
-    padding:25px;
+    padding:20px;
 
     border-radius:15px;
 
@@ -306,7 +284,15 @@ main{
 
     color:#777;
 
-    font-size:15px;
+    font-size:14px;
+
+}
+
+
+
+.card h1{
+
+    margin-top:10px;
 
 }
 
@@ -314,16 +300,16 @@ main{
 
 
 
+/* BOX */
 
-/* CAIXAS */
 
 .box{
 
     background:white;
 
-    padding:25px;
+    padding:20px;
 
-    margin-top:25px;
+    margin-top:20px;
 
     border-radius:15px;
 
@@ -333,10 +319,18 @@ main{
 
 
 
+.box h2{
+
+    margin-bottom:15px;
+
+}
 
 
 
-/* INPUTS */
+
+
+/* FORM */
+
 
 label{
 
@@ -355,11 +349,13 @@ select{
 
     width:100%;
 
-    padding:12px;
+    padding:14px;
 
     border-radius:10px;
 
     border:1px solid #ddd;
+
+    font-size:16px;
 
 }
 
@@ -369,9 +365,11 @@ select{
 
 button{
 
-    margin-top:20px;
+    margin-top:15px;
 
-    padding:12px 25px;
+    width:100%;
+
+    padding:14px;
 
     border:none;
 
@@ -381,222 +379,11 @@ button{
 
     color:white;
 
-    cursor:pointer;
-
     font-weight:600;
 
 }
 
 
-
-button:hover{
-
- /* =========================
-   AJUSTES PARA CELULAR
-   ========================= */
-
-
-@media(max-width:600px){
-
-
-body{
-    overflow-x:hidden;
-}
-
-
-
-.container{
-
-    display:block;
-
-}
-
-
-
-.sidebar{
-
-    width:100%;
-
-    padding:15px;
-
-    text-align:center;
-
-}
-
-
-
-.sidebar h1{
-
-    margin-bottom:15px;
-
-    font-size:20px;
-
-}
-
-
-
-.sidebar ul{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-}
-
-
-
-.sidebar li{
-
-    margin:0;
-
-}
-
-
-
-.sidebar a{
-
-    font-size:12px;
-
-}
-
-
-
-main{
-
-    padding:15px;
-
-}
-
-
-
-
-
-/* PERFIL */
-
-.topo{
-
-    margin-top:10px;
-
-}
-
-
-
-#fotoPerfil{
-
-    width:75px;
-
-    height:75px;
-
-}
-
-
-
-#menuPerfil{
-
-    width:170px;
-
-}
-
-
-
-.titulo h2{
-
-    font-size:22px;
-
-}
-
-
-
-.titulo p{
-
-    font-size:13px;
-
-}
-
-
-
-
-
-/* CARDS */
-
-.cards{
-
-    display:grid;
-
-    grid-template-columns:1fr;
-
-    gap:15px;
-
-}
-
-
-
-.card{
-
-    padding:20px;
-
-}
-
-
-
-.card h1{
-
-    font-size:25px;
-
-}
-
-
-
-
-
-/* CAIXAS */
-
-.box{
-
-    padding:18px;
-
-    border-radius:12px;
-
-}
-
-
-
-.box h2{
-
-    font-size:20px;
-
-}
-
-
-
-
-
-/* INPUTS */
-
-input,
-select{
-
-    font-size:16px;
-
-    padding:14px;
-
-}
-
-
-
-
-
-button{
-
-    width:100%;
-
-    padding:14px;
-
-}
 
 
 
@@ -604,9 +391,14 @@ button{
 
 /* TABELA */
 
+
 table{
 
-    font-size:12px;
+    width:100%;
+
+    margin-top:15px;
+
+    border-collapse:collapse;
 
     display:block;
 
@@ -619,9 +411,17 @@ table{
 th,
 td{
 
-    padding:8px;
+    padding:10px;
+
+    border-bottom:1px solid #ddd;
+
+    font-size:12px;
+
+    text-align:center;
 
 }
+
+
 
 
 
@@ -629,15 +429,97 @@ td{
 
 /* CORTE DE FOTO */
 
+
 #areaCorte{
+
+    display:none;
 
     width:250px;
 
     height:250px;
+
+    margin:20px auto;
+
+    overflow:hidden;
+
+}
+
+
+
+#imagemCorte{
+
+    max-width:100%;
+
+}
+
+
+
+#salvarFoto{
+
+    display:none;
 
 }
 
 
 
 
-}  
+
+
+/* TELAS MAIORES */
+
+
+@media(min-width:900px){
+
+
+.container{
+
+    display:flex;
+
+}
+
+
+
+.sidebar{
+
+    width:260px;
+
+    min-height:100vh;
+
+}
+
+
+
+main{
+
+    flex:1;
+
+    padding:30px;
+
+}
+
+
+
+.sidebar ul{
+
+    display:block;
+
+}
+
+
+
+.sidebar li{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.cards{
+
+    grid-template-columns:repeat(4,1fr);
+
+}
+
+
+}
