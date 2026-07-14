@@ -534,3 +534,28 @@ header h2{
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 
 }
+#areaCorte {
+
+    width: 250px;
+
+    height: 250px;
+
+    overflow: hidden;
+
+    margin: 20px auto;
+
+}
+
+
+#imagemCorte {
+
+    max-width: 100%;
+
+}
+
+
+#salvarFoto {
+
+    margin-top:15px;
+
+}
