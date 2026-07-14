@@ -1,14 +1,19 @@
 // ==========================
 // CONTABILIZE AI
-// script.js - Parte 1
+// SCRIPT PRINCIPAL
+// PARTE 1
 // ==========================
 
-// Banco de dados
-alert("Sistema carregou");
 
-let registros = JSON.parse(localStorage.getItem("registros")) || [];
+// Banco de dados local
+
+let registros = JSON.parse(
+    localStorage.getItem("registros")
+) || [];
+
 
 // Elementos
+
 const descricao = document.getElementById("descricao");
 const valor = document.getElementById("valor");
 const categoria = document.getElementById("categoria");
@@ -26,12 +31,15 @@ const quantidade = document.getElementById("quantidade");
 
 const pesquisa = document.getElementById("pesquisa");
 
+
 // Gráficos
-let graficoPizza;
-let graficoBarra;
+
+let graficoPizza = null;
+let graficoBarra = null;
+
 
 // ==========================
-// Salvar no navegador
+// Salvar dados
 // ==========================
 
 function salvarDados(){
@@ -43,69 +51,34 @@ function salvarDados(){
 
 }
 
+
+
 // ==========================
 // Formatar dinheiro
 // ==========================
 
-function dinheiro(valor){
+function formatar(valor){
 
-    return valor.toLocaleString("pt-BR",{
-
-        style:"currency",
-        currency:"BRL"
-
-    });
-
-}
-
-// ==========================
-// Atualizar Dashboard
-// ==========================
-
-function atualizarDashboard(){
-
-    let totalReceita = 0;
-    let totalDespesa = 0;
-
-    registros.forEach(item=>{
-
-        if(item.tipo==="receita"){
-
-            totalReceita += item.valor;
-
-        }else{
-
-            totalDespesa += item.valor;
-
+    return Number(valor).toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
         }
-
-    });
-
-    saldo.textContent = dinheiro(totalReceita-totalDespesa);
-
-    receitas.textContent = dinheiro(totalReceita);
-
-    despesas.textContent = dinheiro(totalDespesa);
-
-    quantidade.textContent = registros.length;
+    );
 
 }
 
+
+
 // ==========================
-// Criar Registro
+// ADICIONAR REGISTRO
 // ==========================
 
 function adicionarRegistro(){
 
-    if(
 
-        descricao.value.trim()==="" ||
-
-        valor.value==="" ||
-
-        data.value===""
-
-    ){
+    if(!descricao.value || !valor.value || !data.value){
 
         alert("Preencha todos os campos.");
 
@@ -113,230 +86,368 @@ function adicionarRegistro(){
 
     }
 
-    registros.push({
 
-        id:Date.now(),
+    const novo = {
 
-        descricao:descricao.value,
+        id: Date.now(),
 
-        valor:Number(valor.value),
+        descricao: descricao.value,
 
-        categoria:categoria.value,
+        valor: Number(valor.value),
 
-        tipo:tipo.value,
+        categoria: categoria.value,
 
-        data:data.value
+        tipo: tipo.value,
 
-    });
+        data: data.value
+
+    };
+
+
+    registros.push(novo);
+
 
     salvarDados();
 
-    atualizarDashboard();
 
-    atualizarTabela();
+    atualizarTudo();
 
-    atualizarGraficos();
 
-    limparFormulario();
+    limparCampos();
+
+
+    alert("Registro salvo com sucesso!");
 
 }
 
+
+
 // ==========================
-// Limpar formulário
+// Limpar campos
 // ==========================
 
-function limparFormulario(){
+function limparCampos(){
 
     descricao.value="";
 
     valor.value="";
 
-    categoria.selectedIndex=0;
-
-    tipo.selectedIndex=0;
-
     data.value="";
 
 }
 
+
+
 // ==========================
-// TESTE DO BOTÃO SALVAR
+// BOTÃO SALVAR
 // ==========================
 
-console.log(
-    "Botão salvar encontrado:",
-    salvar
-);
-
-
-// Clique botão salvar
 
 if(salvar){
 
     salvar.addEventListener(
-
         "click",
-
         adicionarRegistro
-
-    );
-
-}else{
-
-    console.log(
-        "Botão salvar não foi encontrado."
     );
 
 }
-// ==========================
-// Carregar dados
-// ==========================
 
-atualizarDashboard();
 
 // ==========================
-// CONTABILIZE AI
-// script.js - Parte 2
+// Atualizar dashboard
 // ==========================
 
-// Atualizar tabela
-function atualizarTabela(filtro = "") {
 
-    tabela.innerHTML = "";
+function atualizarDashboard(){
 
-    let lista = registros.filter(item => {
 
-        const texto = (
-            item.descricao +
-            item.categoria +
-            item.tipo +
-            item.data
-        ).toLowerCase();
+    let receitaTotal = 0;
 
-        return texto.includes(filtro.toLowerCase());
+    let despesaTotal = 0;
+
+
+
+    registros.forEach(item=>{
+
+
+        if(item.tipo==="receita"){
+
+            receitaTotal += item.valor;
+
+        }else{
+
+            despesaTotal += item.valor;
+
+        }
+
 
     });
 
-    if (lista.length === 0) {
+
+
+    saldo.innerHTML =
+    formatar(receitaTotal - despesaTotal);
+
+
+    receitas.innerHTML =
+    formatar(receitaTotal);
+
+
+    despesas.innerHTML =
+    formatar(despesaTotal);
+
+
+    quantidade.innerHTML =
+    registros.length;
+
+
+}
+
+// ==========================
+// CONTABILIZE AI
+// SCRIPT PRINCIPAL
+// PARTE 2
+// ==========================
+
+
+// ==========================
+// ATUALIZAR TABELA
+// ==========================
+
+function atualizarTabela(filtro = ""){
+
+
+    tabela.innerHTML = "";
+
+
+    const lista = registros.filter(item=>{
+
+
+        const texto = (
+
+            item.descricao +
+
+            item.categoria +
+
+            item.data
+
+        ).toLowerCase();
+
+
+
+        return texto.includes(
+            filtro.toLowerCase()
+        );
+
+
+    });
+
+
+
+    if(lista.length === 0){
+
 
         tabela.innerHTML = `
-            <tr>
-                <td colspan="6">Nenhum registro encontrado.</td>
-            </tr>
+
+        <tr>
+
+            <td colspan="6">
+                Nenhum registro encontrado.
+            </td>
+
+        </tr>
+
         `;
+
 
         return;
 
     }
 
-    lista.forEach(item => {
+
+
+    lista.forEach(item=>{
+
 
         const linha = document.createElement("tr");
 
+
+
         linha.innerHTML = `
 
-            <td>${item.data}</td>
 
-            <td>${item.descricao}</td>
+        <td>
+            ${item.data}
+        </td>
 
-            <td>${item.categoria}</td>
 
-            <td class="${
+        <td>
+            ${item.descricao}
+        </td>
+
+
+        <td>
+            ${item.categoria}
+        </td>
+
+
+        <td class="${
+            item.tipo === "receita"
+            ?
+            "tipo-receita"
+            :
+            "tipo-despesa"
+        }">
+
+            ${
                 item.tipo === "receita"
-                ? "tipo-receita"
-                : "tipo-despesa"
-            }">
+                ?
+                "Receita"
+                :
+                "Despesa"
+            }
 
-                ${
-                    item.tipo === "receita"
-                    ? "Receita"
-                    : "Despesa"
-                }
+        </td>
 
-            </td>
 
-            <td>${dinheiro(item.valor)}</td>
+        <td>
+            ${formatar(item.valor)}
+        </td>
 
-            <td>
 
-                <button
-                    class="btn-excluir"
-                    onclick="excluirRegistro(${item.id})">
+        <td>
 
-                    Excluir
+            <button
+            class="btn-excluir"
+            onclick="excluirRegistro(${item.id})">
 
-                </button>
+            Excluir
 
-            </td>
+            </button>
+
+        </td>
+
 
         `;
 
+
         tabela.appendChild(linha);
+
 
     });
 
+
 }
 
+
+
 // ==========================
-// Excluir registro
+// EXCLUIR REGISTRO
 // ==========================
+
 
 function excluirRegistro(id){
 
-    const confirmar = confirm(
-        "Deseja realmente excluir este registro?"
+
+    const confirmar =
+    confirm(
+        "Deseja excluir este registro?"
     );
 
-    if(!confirmar) return;
 
-    registros = registros.filter(item => item.id !== id);
+    if(!confirmar){
+
+        return;
+
+    }
+
+
+
+    registros =
+    registros.filter(
+        item=>item.id !== id
+    );
+
+
 
     salvarDados();
 
-    atualizarDashboard();
 
-    atualizarTabela();
+    atualizarTudo();
 
-    atualizarGraficos();
 
 }
 
-// ==========================
-// Pesquisa
-// ==========================
 
-pesquisa.addEventListener("input", () => {
 
-    atualizarTabela(pesquisa.value);
-
-});
 
 // ==========================
-// Carregar tabela
+// PESQUISA
 // ==========================
 
-atualizarTabela();// ==========================
-// CONTABILIZE AI
-// script.js - Parte 3
+
+if(pesquisa){
+
+
+    pesquisa.addEventListener(
+        "input",
+        ()=>{
+
+            atualizarTabela(
+                pesquisa.value
+            );
+
+        }
+    );
+
+
+}
+
+
+
+
+// ==========================
+// GRÁFICOS
 // ==========================
 
-// Atualizar gráficos
+
 function atualizarGraficos(){
 
-    let totalReceitas = 0;
-    let totalDespesas = 0;
 
-    const categorias = {};
+    if(
+        !document.getElementById("graficoPizza")
+    ){
+
+        return;
+
+    }
+
+
+
+    let receita = 0;
+
+    let despesa = 0;
+
+
+    let categorias = {};
+
+
 
     registros.forEach(item=>{
 
+
         if(item.tipo==="receita"){
 
-            totalReceitas += item.valor;
+
+            receita += item.valor;
+
 
         }else{
 
-            totalDespesas += item.valor;
+
+            despesa += item.valor;
+
+
 
             if(!categorias[item.categoria]){
 
@@ -344,16 +455,19 @@ function atualizarGraficos(){
 
             }
 
-            categorias[item.categoria]+=item.valor;
+
+            categorias[item.categoria]
+            += item.valor;
+
 
         }
 
+
     });
 
-    // -------- Gráfico Pizza --------
 
-    const ctxPizza =
-        document.getElementById("graficoPizza").getContext("2d");
+
+
 
     if(graficoPizza){
 
@@ -361,51 +475,50 @@ function atualizarGraficos(){
 
     }
 
-    graficoPizza = new Chart(ctxPizza,{
+
+
+    graficoPizza =
+    new Chart(
+
+        document
+        .getElementById("graficoPizza"),
+
+        {
+
 
         type:"pie",
 
+
         data:{
 
-            labels:["Receitas","Despesas"],
+
+            labels:[
+                "Receitas",
+                "Despesas"
+            ],
+
 
             datasets:[{
 
-                data:[totalReceitas,totalDespesas],
-
-                backgroundColor:[
-
-                    "#16a34a",
-                    "#dc2626"
-
+                data:[
+                    receita,
+                    despesa
                 ]
+
 
             }]
 
-        },
-
-        options:{
-
-            responsive:true,
-
-            plugins:{
-
-                legend:{
-
-                    position:"bottom"
-
-                }
-
-            }
 
         }
 
-    });
 
-    // -------- Barras --------
+        }
 
-    const ctxBarra =
-        document.getElementById("graficoBarra").getContext("2d");
+    );
+
+
+
+
 
     if(graficoBarra){
 
@@ -413,92 +526,89 @@ function atualizarGraficos(){
 
     }
 
-    graficoBarra = new Chart(ctxBarra,{
+
+
+
+    graficoBarra =
+    new Chart(
+
+        document
+        .getElementById("graficoBarra"),
+
+        {
+
 
         type:"bar",
 
+
         data:{
 
-            labels:Object.keys(categorias),
+
+            labels:
+            Object.keys(categorias),
+
 
             datasets:[{
 
                 label:"Gastos",
 
-                data:Object.values(categorias),
+                data:
+                Object.values(categorias)
 
-                backgroundColor:"#2563eb"
 
             }]
 
-        },
-
-        options:{
-
-            responsive:true,
-
-            scales:{
-
-                y:{
-
-                    beginAtZero:true
-
-                }
-
-            }
 
         }
 
-    });
+
+        }
+
+    );
+
+
 
 }
 
+
+
 // ==========================
-// Inicialização
+// ATUALIZA TUDO
 // ==========================
 
-if(registros.length > 0){
+
+function atualizarTudo(){
+
+
+    atualizarDashboard();
 
     atualizarTabela();
 
+    atualizarGraficos();
+
+
 }
 
-atualizarDashboard();
 
-atualizarGraficos();
 
 // ==========================
-// Data atual automaticamente
+// INICIAR SISTEMA
 // ==========================
 
-window.addEventListener("load",()=>{
 
-    if(data){
+atualizarTudo();
 
-        data.value = new Date().toISOString().split("T")[0];
 
-    }
 
-});
+// Data automática
 
-// ==========================
-// Enter salva registro
-// ==========================
+if(data){
 
-document.addEventListener("keydown",(e)=>{
 
-    if(e.key==="Enter"){
+    data.value =
+    new Date()
+    .toISOString()
+    .split("T")[0];
 
-        if(document.activeElement.tagName==="INPUT"){
 
-            adicionarRegistro();
-
-        }
-
-    }
-
-});
-
-// ==========================
-// Fim do arquivo
-// ==========================
+}
