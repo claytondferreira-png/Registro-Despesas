@@ -22,238 +22,324 @@
 <div class="container">
 
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <h1>💰 Contabilize AI</h1>
+<h1>💰 Contabilize AI</h1>
 
-        <ul>
+<ul>
 
-            <li><a href="#dashboard">🏠 Dashboard</a></li>
+<li><a href="#dashboard">🏠 Dashboard</a></li>
 
-            <li><a href="#registro">➕ Novo Registro</a></li>
+<li><a href="#registro">➕ Novo Registro</a></li>
 
-            <li><a href="#historico">📄 Histórico</a></li>
+<li><a href="#historico">📄 Histórico</a></li>
 
-            <li><a href="#graficos">📊 Gráficos</a></li>
+<li><a href="#graficos">📊 Gráficos</a></li>
 
-        </ul>
+</ul>
 
-    </aside>
+</aside>
 
 
 
-    <main>
+<main>
 
 
-        <header>
 
-            <h2>Painel Financeiro</h2>
+<header class="topo">
 
-            <p>
-            Controle todos os seus gastos em um único lugar.
-            </p>
 
-        </header>
+<div class="perfil">
 
 
+<img 
+id="fotoPerfil"
+src="https://i.imgur.com/6VBx3io.png"
+alt="Foto">
 
-        <section id="dashboard" class="cards">
 
+<h3 id="nomeUsuario">
+Usuário
+</h3>
 
-            <div class="card">
 
-                <h3>Saldo</h3>
+<p id="emailUsuario">
+email@email.com
+</p>
 
-                <h1 id="saldo">
-                R$ 0,00
-                </h1>
 
-            </div>
+<button id="sair">
+Sair
+</button>
 
 
-            <div class="card">
+</div>
 
-                <h3>Receitas</h3>
 
-                <h1 id="receitas">
-                R$ 0,00
-                </h1>
+<div class="titulo">
 
-            </div>
+<h2>
+Painel Financeiro
+</h2>
 
 
-            <div class="card">
+<p>
+Controle todos os seus gastos em um único lugar.
+</p>
 
-                <h3>Despesas</h3>
+</div>
 
-                <h1 id="despesas">
-                R$ 0,00
-                </h1>
 
-            </div>
+</header>
 
 
-            <div class="card">
 
-                <h3>Registros</h3>
 
-                <h1 id="quantidade">
-                0
-                </h1>
 
-            </div>
+<section id="dashboard" class="cards">
 
 
-        </section>
+<div class="card">
 
+<h3>Saldo</h3>
 
+<h1 id="saldo">
+R$ 0,00
+</h1>
 
+</div>
 
-        <section id="registro" class="box">
 
+<div class="card">
 
-            <h2>Novo Registro</h2>
+<h3>Receitas</h3>
 
+<h1 id="receitas">
+R$ 0,00
+</h1>
 
-            <label>Descrição</label>
+</div>
 
-            <input 
-            id="descricao"
-            type="text"
-            placeholder="Ex: Mercado">
 
+<div class="card">
 
-            <label>Valor</label>
+<h3>Despesas</h3>
 
-            <input
-            id="valor"
-            type="number"
-            placeholder="0.00">
+<h1 id="despesas">
+R$ 0,00
+</h1>
 
+</div>
 
-            <label>Categoria</label>
 
-            <select id="categoria">
+<div class="card">
 
-                <option>Mercado</option>
-                <option>Alimentação</option>
-                <option>Transporte</option>
-                <option>Casa</option>
-                <option>Lazer</option>
-                <option>Saúde</option>
-                <option>Educação</option>
-                <option>Salário</option>
-                <option>Outros</option>
+<h3>Registros</h3>
 
-            </select>
+<h1 id="quantidade">
+0
+</h1>
 
+</div>
 
 
-            <label>Tipo</label>
+</section>
 
-            <select id="tipo">
 
-                <option value="receita">
-                Receita
-                </option>
 
-                <option value="despesa">
-                Despesa
-                </option>
 
-            </select>
 
+<section id="registro" class="box">
 
 
-            <label>Data</label>
+<h2>Novo Registro</h2>
 
-            <input 
-            id="data"
-            type="date">
 
+<div class="grid">
 
-            <button id="salvar">
 
-                Salvar Registro
+<div>
 
-            </button>
+<label>Descrição</label>
 
+<input 
+id="descricao"
+type="text"
+placeholder="Ex: Mercado">
 
+</div>
 
-        </section>
 
 
+<div>
 
+<label>Valor</label>
 
+<input 
+id="valor"
+type="number"
+placeholder="0.00">
 
-        <section id="historico" class="box">
+</div>
 
 
-            <h2>Histórico</h2>
 
+<div>
 
-            <input 
-            id="pesquisa"
-            placeholder="Pesquisar...">
+<label>Categoria</label>
 
+<select id="categoria">
 
+<option>Mercado</option>
 
-            <table>
+<option>Alimentação</option>
 
+<option>Transporte</option>
 
-                <thead>
+<option>Casa</option>
 
-                    <tr>
+<option>Lazer</option>
 
-                        <th>Data</th>
+<option>Saúde</option>
 
-                        <th>Descrição</th>
+<option>Educação</option>
 
-                        <th>Categoria</th>
+<option>Salário</option>
 
-                        <th>Tipo</th>
+<option>Outros</option>
 
-                        <th>Valor</th>
+</select>
 
-                        <th>Ação</th>
+</div>
 
-                    </tr>
 
-                </thead>
 
 
-                <tbody id="tabela">
+<div>
 
+<label>Tipo</label>
 
-                </tbody>
+<select id="tipo">
 
+<option value="receita">
+Receita
+</option>
 
-            </table>
 
+<option value="despesa">
+Despesa
+</option>
 
-        </section>
 
+</select>
 
+</div>
 
 
 
-        <section id="graficos" class="box">
 
+<div>
 
-            <h2>Gráficos</h2>
+<label>Data</label>
 
+<input
+id="data"
+type="date">
 
-            <canvas id="graficoPizza"></canvas>
+</div>
 
 
-            <canvas id="graficoBarra"></canvas>
 
+</div>
 
-        </section>
 
 
+<button id="salvar">
 
-    </main>
+Salvar Registro
+
+</button>
+
+
+</section>
+
+
+
+
+
+
+<section id="historico" class="box">
+
+
+<h2>Histórico</h2>
+
+
+<input
+id="pesquisa"
+placeholder="Pesquisar...">
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>Data</th>
+
+<th>Descrição</th>
+
+<th>Categoria</th>
+
+<th>Tipo</th>
+
+<th>Valor</th>
+
+<th>Ação</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="tabela">
+
+
+</tbody>
+
+
+</table>
+
+
+</section>
+
+
+
+
+
+
+
+<section id="graficos" class="box">
+
+
+<h2>Gráficos</h2>
+
+
+<canvas id="graficoPizza"></canvas>
+
+
+<canvas id="graficoBarra"></canvas>
+
+
+</section>
+
+
+
+
+
+</main>
 
 
 </div>
@@ -261,13 +347,15 @@
 
 
 
-<!-- SCRIPTS NO FINAL -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script type="module" src="protect.js"></script>
 
+<script type="module" src="perfil.js"></script>
+
 <script src="script.js"></script>
+
 
 
 </body>
