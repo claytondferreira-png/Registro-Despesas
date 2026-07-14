@@ -1,93 +1,79 @@
-// =============================
-// Corte de foto de perfil
-// Contabilize AI
-// =============================
-
-
 const inputFoto =
 document.getElementById("selecionarFoto");
-
 
 const imagemCorte =
 document.getElementById("imagemCorte");
 
+const areaCorte =
+document.getElementById("areaCorte");
 
 const salvarFoto =
 document.getElementById("salvarFoto");
 
-
 const fotoPerfil =
 document.getElementById("fotoPerfil");
-
 
 
 let cropper;
 
 
 
-// Escolher imagem
+inputFoto.addEventListener("change", function(){
 
-inputFoto.addEventListener(
-"change",
-function(e){
+    const arquivo = this.files[0];
 
 
-const arquivo =
-e.target.files[0];
-
-
-if(!arquivo){
-
-return;
-
-}
+    if(!arquivo){
+        return;
+    }
 
 
 
-const leitor =
-new FileReader();
+    const leitor = new FileReader();
 
 
 
-leitor.onload = function(event){
+    leitor.onload = function(e){
 
 
-imagemCorte.src =
-event.target.result;
+        imagemCorte.src = e.target.result;
 
 
+        areaCorte.style.display = "block";
 
-if(cropper){
-
-cropper.destroy();
-
-}
+        salvarFoto.style.display = "block";
 
 
 
-cropper = new Cropper(
-imagemCorte,
-{
+        if(cropper){
 
-aspectRatio:1,
+            cropper.destroy();
 
-viewMode:1,
-
-dragMode:"move",
-
-autoCropArea:1
-
-}
-);
+        }
 
 
 
-};
+        cropper = new Cropper(
+            imagemCorte,
+            {
+
+                aspectRatio: 1,
+
+                viewMode: 1,
+
+                dragMode: "move",
+
+                autoCropArea: 1
+
+            }
+        );
+
+
+    };
 
 
 
-leitor.readAsDataURL(arquivo);
-
+    leitor.readAsDataURL(arquivo);
 
 
 });
@@ -96,51 +82,41 @@ leitor.readAsDataURL(arquivo);
 
 
 
-// Salvar corte
-
-salvarFoto.addEventListener(
-"click",
-()=>{
+salvarFoto.addEventListener("click",()=>{
 
 
-if(!cropper){
+    if(!cropper){
 
-alert("Escolha uma foto primeiro.");
+        alert("Escolha uma foto primeiro");
 
-return;
+        return;
 
-}
+    }
 
 
 
-const imagemFinal =
-cropper.getCroppedCanvas({
+    const imagemFinal =
+    cropper.getCroppedCanvas({
 
-width:300,
+        width:300,
 
-height:300
+        height:300
 
-})
-.toDataURL();
-
-
-
-fotoPerfil.src =
-imagemFinal;
+    }).toDataURL();
 
 
 
-localStorage.setItem(
-"fotoPerfil",
-imagemFinal
-);
+    fotoPerfil.src = imagemFinal;
+
+
+    localStorage.setItem(
+        "fotoPerfil",
+        imagemFinal
+    );
 
 
 
-alert(
-"Foto atualizada!"
-);
-
+    alert("Foto salva!");
 
 
 });
