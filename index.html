@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contabilize AI</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+💰 Contabilize AI
+</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+<a href="#">Histórico</a>
+<a href="#">Relatórios</a>
+
+</nav>
+
+</header>
+
+<main>
+
+<section class="cards">
+
+<div class="card saldo">
+<h3>Saldo Atual</h3>
+<h2 id="saldo">R$ 0,00</h2>
+</div>
+
+<div class="card receita">
+<h3>Receitas</h3>
+<h2 id="receitas">R$ 0,00</h2>
+</div>
+
+<div class="card despesa">
+<h3>Despesas</h3>
+<h2 id="despesas">R$ 0,00</h2>
+</div>
+
+</section>
+
+<section class="acoes">
+
+<button id="vozBtn">
+🎤 Registrar por Voz
+</button>
+
+<button id="textoBtn">
+⌨️ Digitar Registro
+</button>
+
+</section>
+
+<section class="formulario">
+
+<h2>Novo Registro</h2>
+
+<input
+type="text"
+id="descricao"
+placeholder="Descrição"
+/>
+
+<input
+type="number"
+id="valor"
+placeholder="Valor"
+/>
+
+<select id="categoria">
+
+<option>Mercado</option>
+<option>Transporte</option>
+<option>Alimentação</option>
+<option>Lazer</option>
+<option>Casa</option>
+<option>Saúde</option>
+<option>Outros</option>
+
+</select>
+
+<select id="tipo">
+
+<option value="despesa">Despesa</option>
+<option value="receita">Receita</option>
+
+</select>
+
+<input
+type="date"
+id="data"
+/>
+
+<button id="salvar">
+Salvar Registro
+</button>
+
+</section>
+
+<section class="grafico">
+
+<h2>Resumo Financeiro</h2>
+
+<canvas id="graficoPizza"></canvas>
+
+</section>
+
+<section class="historico">
+
+<h2>Histórico</h2>
+
+<input
+type="text"
+id="pesquisa"
+placeholder="Pesquisar..."
+>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Data</th>
+<th>Descrição</th>
+<th>Categoria</th>
+<th>Tipo</th>
+<th>Valor</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tabela">
+
+</tbody>
+
+</table>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+© 2026 Contabilize AI
+</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
