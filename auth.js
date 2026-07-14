@@ -5,8 +5,6 @@
 // =============================
 
 
-// Import Firebase
-
 import { initializeApp } from 
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -15,7 +13,8 @@ import {
 getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
-sendPasswordResetEmail
+sendPasswordResetEmail,
+updateProfile
 }
 from 
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -52,11 +51,14 @@ const auth = getAuth(app);
 
 
 
-// Pegar elementos da tela
+// Campos
+
+const nome = document.getElementById("nome");
 
 const email = document.getElementById("email");
 
 const senha = document.getElementById("senha");
+
 
 const entrar = document.getElementById("entrar");
 
@@ -68,21 +70,28 @@ const mensagem = document.getElementById("mensagem");
 
 
 
+
 // =============================
 // CRIAR CONTA
 // =============================
 
+
 criar.addEventListener("click",()=>{
 
 
-    if(email.value === "" || senha.value === ""){
+    if(
+        nome.value === "" ||
+        email.value === "" ||
+        senha.value === ""
+    ){
 
         mensagem.innerHTML =
-        "Preencha e-mail e senha.";
+        "Preencha todos os campos.";
 
         return;
 
     }
+
 
 
     createUserWithEmailAndPassword(
@@ -96,20 +105,42 @@ criar.addEventListener("click",()=>{
     )
 
 
-    .then(()=>{
+    .then((resultado)=>{
 
 
-        mensagem.style.color="#16a34a";
-
-        mensagem.innerHTML =
-        "Conta criada com sucesso!";
+        const usuario = resultado.user;
 
 
-        setTimeout(()=>{
 
-            window.location.href="index.html";
+        updateProfile(usuario,{
 
-        },1500);
+            displayName:
+            nome.value
+
+        })
+
+        .then(()=>{
+
+
+            mensagem.style.color="#16a34a";
+
+
+            mensagem.innerHTML =
+            "Conta criada com sucesso!";
+
+
+            setTimeout(()=>{
+
+
+                window.location.href="index.html";
+
+
+            },1500);
+
+
+
+        });
+
 
 
     })
@@ -121,14 +152,20 @@ criar.addEventListener("click",()=>{
         mensagem.style.color="#dc2626";
 
 
-        if(erro.code==="auth/email-already-in-use"){
+        if(
+        erro.code ===
+        "auth/email-already-in-use"
+        ){
 
             mensagem.innerHTML =
-            "Esse e-mail já possui uma conta.";
+            "Esse e-mail já está cadastrado.";
 
         }
 
-        else if(erro.code==="auth/weak-password"){
+        else if(
+        erro.code ===
+        "auth/weak-password"
+        ){
 
             mensagem.innerHTML =
             "A senha precisa ter pelo menos 6 caracteres.";
@@ -146,7 +183,11 @@ criar.addEventListener("click",()=>{
     });
 
 
+
 });
+
+
+
 
 
 
@@ -154,20 +195,8 @@ criar.addEventListener("click",()=>{
 // LOGIN
 // =============================
 
+
 entrar.addEventListener("click",()=>{
-
-
-    if(email.value === "" || senha.value === ""){
-
-
-        mensagem.innerHTML =
-        "Preencha todos os campos.";
-
-
-        return;
-
-    }
-
 
 
     signInWithEmailAndPassword(
@@ -200,6 +229,7 @@ entrar.addEventListener("click",()=>{
         },1000);
 
 
+
     })
 
 
@@ -216,7 +246,11 @@ entrar.addEventListener("click",()=>{
     });
 
 
+
 });
+
+
+
 
 
 
@@ -224,13 +258,11 @@ entrar.addEventListener("click",()=>{
 // RECUPERAR SENHA
 // =============================
 
+
 recuperar.addEventListener("click",()=>{
 
 
     if(email.value===""){
-
-
-        mensagem.style.color="#dc2626";
 
 
         mensagem.innerHTML =
@@ -272,10 +304,10 @@ recuperar.addEventListener("click",()=>{
 
 
         mensagem.innerHTML =
-        "Não foi possível enviar o link.";
-
+        "Erro ao enviar o link.";
 
     });
+
 
 
 });
