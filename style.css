@@ -519,3 +519,18 @@ header h2{
 .fade{
     transition:.3s;
 }
+
+#fotoPerfil {
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 4px solid #d4af37;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+}
