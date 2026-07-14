@@ -105,24 +105,25 @@ onAuthStateChanged(auth,(usuario)=>{
 // Botão sair
 
 if(sair){
-
-
-    sair.addEventListener("click",()=>{
-
+    sair.onclick = function(){
 
         signOut(auth)
 
         .then(()=>{
 
+            window.location.href = "login.html";
 
-            window.location.href =
-            "login.html";
+        })
 
+        .catch((erro)=>{
+
+            console.log(
+                "Erro ao sair:",
+                erro
+            );
 
         });
 
-
-    });
-
+    };
 
 }
