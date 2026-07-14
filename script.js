@@ -160,17 +160,34 @@ function limparFormulario(){
 }
 
 // ==========================
-// Clique botão salvar
+// TESTE DO BOTÃO SALVAR
 // ==========================
 
-salvar.addEventListener(
-
-    "click",
-
-    adicionarRegistro
-
+console.log(
+    "Botão salvar encontrado:",
+    salvar
 );
 
+
+// Clique botão salvar
+
+if(salvar){
+
+    salvar.addEventListener(
+
+        "click",
+
+        adicionarRegistro
+
+    );
+
+}else{
+
+    console.log(
+        "Botão salvar não foi encontrado."
+    );
+
+}
 // ==========================
 // Carregar dados
 // ==========================
