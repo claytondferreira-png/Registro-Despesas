@@ -4,6 +4,8 @@
 // ==========================
 
 // Banco de dados
+alert("Sistema carregou");
+
 let registros = JSON.parse(localStorage.getItem("registros")) || [];
 
 // Elementos
