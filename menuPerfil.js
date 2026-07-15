@@ -1,4 +1,5 @@
-alert("menu carregou");
+alert("menuPerfil funcionando");
+
 const fotoPerfil = document.getElementById("fotoPerfil");
 const menuPerfil = document.getElementById("menuPerfil");
 
