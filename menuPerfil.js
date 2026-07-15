@@ -1,36 +1,41 @@
-alert("menuPerfil funcionando");
+// ============================
+// MENU DO PERFIL
+// ============================
 
-const fotoPerfil = document.getElementById("fotoPerfil");
-const menuPerfil = document.getElementById("menuPerfil");
+const editarFoto = document.getElementById("editarFoto");
+const editarNome = document.getElementById("editarNome");
+const selecionarFoto = document.getElementById("selecionarFoto");
 
-
-if(fotoPerfil && menuPerfil){
-
-
-    fotoPerfil.addEventListener("click", function(event){
-
-        event.stopPropagation();
+const nomeUsuario = document.getElementById("nomeUsuario");
 
 
-        if(menuPerfil.style.display === "block"){
+// Atualizar foto
+editarFoto.addEventListener("click", () => {
 
-            menuPerfil.style.display = "none";
+    selecionarFoto.click();
 
-        } else {
-
-            menuPerfil.style.display = "block";
-
-        }
-
-    });
+});
 
 
+// Mudar nome
+editarNome.addEventListener("click", () => {
 
-    document.addEventListener("click", function(){
+    const novoNome = prompt("Digite seu novo nome:");
 
-        menuPerfil.style.display = "none";
+    if (!novoNome) return;
 
-    });
+    nomeUsuario.textContent = novoNome;
 
+    localStorage.setItem("nomeUsuario", novoNome);
+
+});
+
+
+// Carregar nome salvo
+const nomeSalvo = localStorage.getItem("nomeUsuario");
+
+if (nomeSalvo) {
+
+    nomeUsuario.textContent = nomeSalvo;
 
 }
