@@ -9,12 +9,16 @@
 
 <title>Contabilize AI</title>
 
+
 <link rel="stylesheet" href="style.css">
+
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+
 
 </head>
 
@@ -28,88 +32,114 @@ href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
 
 <aside class="sidebar">
 
-<h1>💰 Contabilize AI</h1>
+
+<h1>
+💰 Contabilize AI
+</h1>
+
 
 <ul>
 
-<li><a href="#dashboard">🏠 Dashboard</a></li>
+<li>
+<a href="#dashboard">
+🏠 Dashboard
+</a>
+</li>
 
-<li><a href="#registro">➕ Novo Registro</a></li>
 
-<li><a href="#historico">📄 Histórico</a></li>
+<li>
+<a href="#registro">
+➕ Novo Registro
+</a>
+</li>
 
-<li><a href="#graficos">📊 Gráficos</a></li>
+
+<li>
+<a href="#historico">
+📄 Histórico
+</a>
+</li>
+
+
+<li>
+<a href="#graficos">
+📊 Gráficos
+</a>
+</li>
+
 
 </ul>
+
 
 </aside>
 
 
 
 
-
 <main>
 
+<!-- PERFIL DO USUÁRIO -->
 
-<header class="topo">
-
-
-
-<div class="perfil">
+<div class="perfilTopo">
 
 
+    <div class="fotoContainer">
 
-<div class="fotoContainer">
 
-
-<img
-id="fotoPerfil"
-src="https://i.imgur.com/6VBx3io.png"
-alt="Foto perfil">
+        <img
+        id="fotoPerfil"
+        src="https://i.imgur.com/6VBx3io.png"
+        alt="Foto perfil">
 
 
 
-<div id="menuPerfil">
+        <div class="menuPerfil">
 
 
-<button id="editarFoto">
-📷 Alterar foto
-</button>
-
-
-<button id="editarNome">
-✏️ Editar nome
-</button>
-
-
-<button id="sair">
-🚪 Sair
-</button>
-
-
-</div>
-
-
-</div>
+            <button id="editarFoto">
+                📷 Atualizar foto
+            </button>
 
 
 
-<input
-type="file"
-id="selecionarFoto"
-accept="image/*"
-hidden>
+            <button id="editarNome">
+                ✏️ Mudar nome
+            </button>
 
 
 
-<h3 id="nomeUsuario">
-Usuário
-</h3>
+            <button id="sair">
+                🚪 Sair
+            </button>
 
 
-<p id="emailUsuario">
-email@email.com
-</p>
+        </div>
+
+
+    </div>
+
+
+
+
+    <input
+    type="file"
+    id="selecionarFoto"
+    accept="image/*"
+    hidden>
+
+
+
+
+    <h3 id="nomeUsuario">
+        Usuário
+    </h3>
+
+
+
+    <p id="emailUsuario">
+        email@email.com
+    </p>
+
 
 
 </div>
@@ -133,261 +163,197 @@ Controle todos os seus gastos em um único lugar.
 
 </div>
 
-
-
-</header>
-
-
-
-
-
-
+  <!-- DASHBOARD -->
 
 <section id="dashboard" class="cards">
 
 
-<div class="card">
+    <div class="card">
 
-<h3>Saldo</h3>
+        <h3>Saldo</h3>
 
-<h1 id="saldo">
-R$ 0,00
-</h1>
+        <h1 id="saldo">
+            R$ 0,00
+        </h1>
 
-</div>
-
-
-
-<div class="card">
-
-<h3>Receitas</h3>
-
-<h1 id="receitas">
-R$ 0,00
-</h1>
-
-</div>
+    </div>
 
 
 
 
-<div class="card">
+    <div class="card">
 
-<h3>Despesas</h3>
+        <h3>Receitas</h3>
 
-<h1 id="despesas">
-R$ 0,00
-</h1>
+        <h1 id="receitas">
+            R$ 0,00
+        </h1>
 
-</div>
-
-
+    </div>
 
 
-<div class="card">
 
-<h3>Registros</h3>
 
-<h1 id="quantidade">
-0
-</h1>
+    <div class="card">
 
-</div>
+        <h3>Despesas</h3>
+
+        <h1 id="despesas">
+            R$ 0,00
+        </h1>
+
+    </div>
+
+
+
+
+    <div class="card">
+
+        <h3>Registros</h3>
+
+        <h1 id="quantidade">
+            0
+        </h1>
+
+    </div>
 
 
 </section>
 
-
-
-
-
-
+<!-- NOVO REGISTRO -->
 
 <section id="registro" class="box">
 
+    <h2>Novo Registro</h2>
 
-<h2>Novo Registro</h2>
+    <label for="descricao">Descrição</label>
+    <input
+        type="text"
+        id="descricao"
+        placeholder="Ex: Mercado">
 
+    <label for="valor">Valor</label>
+    <input
+        type="number"
+        id="valor"
+        placeholder="0,00">
 
-<label>Descrição</label>
+    <label for="categoria">Categoria</label>
+    <select id="categoria">
 
-<input id="descricao"
-type="text"
-placeholder="Ex: Mercado">
+        <option>Mercado</option>
+        <option>Alimentação</option>
+        <option>Transporte</option>
+        <option>Casa</option>
+        <option>Lazer</option>
+        <option>Saúde</option>
+        <option>Educação</option>
+        <option>Salário</option>
+        <option>Outros</option>
 
+    </select>
 
+    <label for="tipo">Tipo</label>
+    <select id="tipo">
 
-<label>Valor</label>
+        <option value="receita">Receita</option>
+        <option value="despesa">Despesa</option>
 
-<input id="valor"
-type="number"
-placeholder="0.00">
+    </select>
 
+    <label for="data">Data</label>
+    <input
+        type="date"
+        id="data">
 
-
-<label>Categoria</label>
-
-<select id="categoria">
-
-<option>Mercado</option>
-<option>Alimentação</option>
-<option>Transporte</option>
-<option>Casa</option>
-<option>Lazer</option>
-<option>Saúde</option>
-<option>Educação</option>
-<option>Salário</option>
-<option>Outros</option>
-
-</select>
-
-
-
-
-<label>Tipo</label>
-
-<select id="tipo">
-
-<option value="receita">
-Receita
-</option>
-
-<option value="despesa">
-Despesa
-</option>
-
-</select>
-
-
-
-
-<label>Data</label>
-
-<input id="data"
-type="date">
-
-
-
-<button id="salvar">
-Salvar Registro
-</button>
-
+    <button id="salvar">
+        💾 Salvar Registro
+    </button>
 
 </section>
 
-
-
-
-
-
+<!-- HISTÓRICO -->
 
 <section id="historico" class="box">
 
+    <h2>Histórico</h2>
 
-<h2>Histórico</h2>
+    <input
+        type="text"
+        id="pesquisa"
+        placeholder="Pesquisar por descrição ou categoria...">
 
+    <table>
 
-<input id="pesquisa"
-placeholder="Pesquisar...">
+        <thead>
 
+            <tr>
 
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Ação</th>
 
-<table>
+            </tr>
 
-<thead>
+        </thead>
 
-<tr>
+        <tbody id="tabela">
 
-<th>Data</th>
+        </tbody>
 
-<th>Descrição</th>
-
-<th>Categoria</th>
-
-<th>Tipo</th>
-
-<th>Valor</th>
-
-<th>Ação</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="tabela">
-
-</tbody>
-
-
-</table>
-
+    </table>
 
 </section>
 
 
 
-
-
-
+<!-- GRÁFICOS -->
 
 <section id="graficos" class="box">
 
+    <h2>Gráficos</h2>
 
-<h2>Gráficos</h2>
+    <canvas id="graficoPizza"></canvas>
 
-
-<canvas id="graficoPizza"></canvas>
-
-
-<canvas id="graficoBarra"></canvas>
-
+    <canvas id="graficoBarra"></canvas>
 
 </section>
 
-
-
-
-
-
-
-<!-- EDITOR DE FOTO OCULTO -->
+<!-- ÁREA DE CORTE DA FOTO -->
 
 <div id="areaCorte">
 
-
-<img id="imagemCorte">
-
+    <img
+        id="imagemCorte"
+        alt="Pré-visualização da foto">
 
 </div>
 
 
-
-<button id="salvarFoto">
-Salvar Foto
+<button
+    id="salvarFoto">
+    Salvar Foto
 </button>
-
-
-
-
-
-
 
 
 </main>
 
-
 </div>
 
 
 
-
-
+<!-- BIBLIOTECAS -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
 
+
+
+<!-- FIREBASE / LOGIN -->
 
 <script type="module" src="protect.js"></script>
 
@@ -396,11 +362,18 @@ Salvar Foto
 <script type="module" src="editarPerfil.js"></script>
 
 
+
+<!-- PERFIL -->
+
 <script src="fotoPerfil.js"></script>
 
 <script src="cortarFoto.js"></script>
 
-<script src="menuPerfil.js"></script>
+<script src="perfilMenu.js"></script>
+
+
+
+<!-- SISTEMA FINANCEIRO -->
 
 <script src="script.js"></script>
 
