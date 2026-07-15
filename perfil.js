@@ -1,47 +1,40 @@
-// =============================
+// ==============================
 // CONTABILIZE AI
-// Perfil do usuário
-// =============================
+// Perfil Completo
+// ==============================
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { initializeApp } from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-
-import { 
-getAuth,
-onAuthStateChanged,
-signOut
-}
-from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut,
+    updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 
-
-// Configuração Firebase
+// Firebase
 
 const firebaseConfig = {
 
-apiKey: "AIzaSyB2lgYqvEaCQOuEXoIt3VM5ILGs65G7vts",
+    apiKey: "AIzaSyB2lgYqvEaCQOuEXoIt3VM5ILGs65G7vts",
 
-authDomain: "contabiliza-dc4dd.firebaseapp.com",
+    authDomain: "contabiliza-dc4dd.firebaseapp.com",
 
-projectId: "contabiliza-dc4dd",
+    projectId: "contabiliza-dc4dd",
 
-storageBucket: "contabiliza-dc4dd.firebasestorage.app",
+    storageBucket: "contabiliza-dc4dd.firebasestorage.app",
 
-messagingSenderId: "348846627427",
+    messagingSenderId: "348846627427",
 
-appId: "1:348846627427:web:b7899209bed30200abb656",
+    appId: "1:348846627427:web:b7899209bed30200abb656",
 
-measurementId: "G-CME7DK2ZN2"
+    measurementId: "G-CME7DK2ZN2"
 
 };
 
 
-
-// Inicializar Firebase
 
 const app = initializeApp(firebaseConfig);
 
@@ -49,105 +42,215 @@ const auth = getAuth(app);
 
 
 
-
 // Elementos
 
-const nomeUsuario = 
+const nomeUsuario =
 document.getElementById("nomeUsuario");
 
 
-const emailUsuario = 
+const emailUsuario =
 document.getElementById("emailUsuario");
 
 
-const fotoPerfil = 
+const fotoPerfil =
 document.getElementById("fotoPerfil");
 
 
-const sair = 
+const editarFoto =
+document.getElementById("editarFoto");
+
+
+const editarNome =
+document.getElementById("editarNome");
+
+
+const selecionarFoto =
+document.getElementById("selecionarFoto");
+
+
+const sair =
 document.getElementById("sair");
 
 
 
+let usuarioAtual = null;
 
-// Carregar usuário
+// ==============================
+// CARREGAR PERFIL
+// ==============================
 
-onAuthStateChanged(auth, async (usuario)=>{
+onAuthStateChanged(auth, async (usuario) => {
 
+    if (!usuario) {
 
-    if(usuario){
-
-
-        await usuario.reload();
-
-
-
-        const usuarioAtual = auth.currentUser;
-
-
-
-        nomeUsuario.innerHTML =
-        usuarioAtual.displayName || "Usuário";
-
-
-
-        emailUsuario.innerHTML =
-        usuarioAtual.email;
-
-
-
-        if(usuarioAtual.photoURL){
-
-
-            fotoPerfil.src =
-            usuarioAtual.photoURL;
-
-
-        }
-
+        window.location.href = "login.html";
+        return;
 
     }
 
+    usuarioAtual = usuario;
+
+    await usuario.reload();
+
+    // Nome
+    if (nomeUsuario) {
+
+        nomeUsuario.textContent =
+            usuario.displayName || "Usuário";
+
+    }
+
+    // Email
+    if (emailUsuario) {
+
+        emailUsuario.textContent =
+            usuario.email || "";
+
+    }
+
+    // Foto do Firebase tem prioridade
+    if (fotoPerfil) {
+
+        if (usuario.photoURL) {
+
+            fotoPerfil.src = usuario.photoURL;
+
+        } else {
+
+            // Se não existir foto no Firebase,
+            // tenta carregar do navegador
+
+            const fotoLocal =
+                localStorage.getItem("fotoPerfil");
+
+            if (fotoLocal) {
+
+                fotoPerfil.src = fotoLocal;
+
+            }
+
+        }
+
+    }
 
 });
 
 
 
+// ==============================
+// ALTERAR FOTO
+// ==============================
+
+if (editarFoto && selecionarFoto) {
+
+    editarFoto.addEventListener("click", () => {
+
+        selecionarFoto.click();
+
+    });
+
+}
 
 
 
-// Botão sair
+if (selecionarFoto) {
 
-if(sair){
+    selecionarFoto.addEventListener("change", (e) => {
 
+        const arquivo = e.target.files[0];
 
-    sair.onclick = ()=>{
+        if (!arquivo) return;
 
+        const leitor = new FileReader();
 
-        signOut(auth)
+        leitor.onload = function (evento) {
 
-        .then(()=>{
+            const imagem = evento.target.result;
 
+            if (fotoPerfil) {
 
-            window.location.href =
-            "login.html";
+                fotoPerfil.src = imagem;
 
+            }
 
-        })
-
-        .catch((erro)=>{
-
-
-            console.log(
-            "Erro ao sair:",
-            erro
+            // Salva localmente por enquanto
+            localStorage.setItem(
+                "fotoPerfil",
+                imagem
             );
 
+        };
 
-        });
+        leitor.readAsDataURL(arquivo);
+
+    });
+
+}
+
+// ==============================
+// ALTERAR NOME
+// ==============================
+
+if (editarNome) {
+
+    editarNome.addEventListener("click", async () => {
+
+        if (!usuarioAtual) return;
+
+        const novoNome = prompt(
+            "Digite seu novo nome:"
+        );
+
+        if (!novoNome) return;
+
+        try {
+
+            await updateProfile(usuarioAtual, {
+                displayName: novoNome
+            });
+
+            if (nomeUsuario) {
+                nomeUsuario.textContent = novoNome;
+            }
+
+            alert("Nome atualizado com sucesso!");
+
+        } catch (erro) {
+
+            console.error(erro);
+
+            alert("Erro ao atualizar o nome.");
+
+        }
+
+    });
+
+}
 
 
-    };
 
+// ==============================
+// SAIR
+// ==============================
+
+if (sair) {
+
+    sair.addEventListener("click", async () => {
+
+        try {
+
+            await signOut(auth);
+
+            window.location.href = "login.html";
+
+        } catch (erro) {
+
+            console.error(erro);
+
+            alert("Erro ao sair da conta.");
+
+        }
+
+    });
 
 }
