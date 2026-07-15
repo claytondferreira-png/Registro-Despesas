@@ -128,9 +128,9 @@ onAuthStateChanged(auth, async (usuario)=>{
 // ALTERAR FOTO
 // ==============================
 
-if(editarFoto){
+if (editarFoto && selecionarFoto) {
 
-    editarFoto.onclick = ()=>{
+    editarFoto.onclick = () => {
 
         selecionarFoto.click();
 
@@ -140,44 +140,63 @@ if(editarFoto){
 
 
 
-if(selecionarFoto){
+if (selecionarFoto) {
 
-    selecionarFoto.onchange = ()=>{
+    selecionarFoto.onchange = () => {
+
 
         const arquivo =
         selecionarFoto.files[0];
 
-        if(!arquivo) return;
 
-        const leitor =
-        new FileReader();
+        if (!arquivo) return;
 
-        leitor.onload = (e)=>{
+
+
+        const leitor = new FileReader();
+
+
+
+        leitor.onload = (e) => {
+
 
             const imagem =
             e.target.result;
 
 
 
-            fotoPerfil.src = imagem;
+            // troca imediatamente na tela
+
+            if(fotoPerfil){
+
+                fotoPerfil.src = imagem;
+
+            }
 
 
+
+            // salva a nova foto substituindo a antiga
 
             if(usuarioAtual){
 
+                localStorage.removeItem(
+                    "fotoPerfil_" + usuarioAtual.uid
+                );
+
+
                 localStorage.setItem(
-
                     "fotoPerfil_" + usuarioAtual.uid,
-
                     imagem
-
                 );
 
             }
 
+
         };
 
+
         leitor.readAsDataURL(arquivo);
+
 
     };
 
