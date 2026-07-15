@@ -1,6 +1,6 @@
 // ==============================
 // CONTABILIZE AI
-// Perfil Completo
+// PERFIL COMPLETO
 // ==============================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -14,7 +14,7 @@ import {
 
 
 
-// Firebase
+// FIREBASE
 
 const firebaseConfig = {
 
@@ -34,39 +34,23 @@ const firebaseConfig = {
 
 };
 
-
-
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 
 
 
-// Elementos
+// ELEMENTOS
 
-const nomeUsuario =
-document.getElementById("nomeUsuario");
+const nomeUsuario = document.getElementById("nomeUsuario");
+const emailUsuario = document.getElementById("emailUsuario");
 
+const fotoPerfil = document.getElementById("fotoPerfil");
 
-const emailUsuario =
-document.getElementById("emailUsuario");
-
-
-const fotoPerfil =
-document.getElementById("fotoPerfil");
-
-
-const editarFoto =
-document.getElementById("editarFoto");
-
-
-const editarNome =
-document.getElementById("editarNome");
-
+const editarFoto = document.getElementById("editarFoto");
+const editarNome = document.getElementById("editarNome");
 
 const selecionarFoto =
 document.getElementById("selecionarFoto");
-
 
 const sair =
 document.getElementById("sair");
@@ -75,15 +59,17 @@ document.getElementById("sair");
 
 let usuarioAtual = null;
 
+
+
 // ==============================
-// CARREGAR PERFIL
+// CARREGAR USUÁRIO
 // ==============================
 
-onAuthStateChanged(auth, async (usuario) => {
+onAuthStateChanged(auth, async (usuario)=>{
 
-    if (!usuario) {
+    if(!usuario){
 
-        window.location.href = "login.html";
+        window.location.href="login.html";
         return;
 
     }
@@ -92,42 +78,43 @@ onAuthStateChanged(auth, async (usuario) => {
 
     await usuario.reload();
 
+
+
     // Nome
-    if (nomeUsuario) {
+
+    if(nomeUsuario){
 
         nomeUsuario.textContent =
-            usuario.displayName || "Usuário";
+        usuario.displayName || "Usuário";
 
     }
+
+
 
     // Email
-    if (emailUsuario) {
+
+    if(emailUsuario){
 
         emailUsuario.textContent =
-            usuario.email || "";
+        usuario.email;
 
     }
 
-    // Foto do Firebase tem prioridade
-    if (fotoPerfil) {
 
-        if (usuario.photoURL) {
 
-            fotoPerfil.src = usuario.photoURL;
+    // Foto salva para este usuário
 
-        } else {
+    const fotoSalva = localStorage.getItem(
+        "fotoPerfil_" + usuario.uid
+    );
 
-            // Se não existir foto no Firebase,
-            // tenta carregar do navegador
 
-            const fotoLocal =
-                localStorage.getItem("fotoPerfil");
 
-            if (fotoLocal) {
+    if(fotoPerfil){
 
-                fotoPerfil.src = fotoLocal;
+        if(fotoSalva){
 
-            }
+            fotoPerfil.src = fotoSalva;
 
         }
 
@@ -141,49 +128,58 @@ onAuthStateChanged(auth, async (usuario) => {
 // ALTERAR FOTO
 // ==============================
 
-if (editarFoto && selecionarFoto) {
+if(editarFoto){
 
-    editarFoto.addEventListener("click", () => {
+    editarFoto.onclick = ()=>{
 
         selecionarFoto.click();
 
-    });
+    };
 
 }
 
 
 
-if (selecionarFoto) {
+if(selecionarFoto){
 
-    selecionarFoto.addEventListener("change", (e) => {
+    selecionarFoto.onchange = ()=>{
 
-        const arquivo = e.target.files[0];
+        const arquivo =
+        selecionarFoto.files[0];
 
-        if (!arquivo) return;
+        if(!arquivo) return;
 
-        const leitor = new FileReader();
+        const leitor =
+        new FileReader();
 
-        leitor.onload = function (evento) {
+        leitor.onload = (e)=>{
 
-            const imagem = evento.target.result;
+            const imagem =
+            e.target.result;
 
-            if (fotoPerfil) {
 
-                fotoPerfil.src = imagem;
+
+            fotoPerfil.src = imagem;
+
+
+
+            if(usuarioAtual){
+
+                localStorage.setItem(
+
+                    "fotoPerfil_" + usuarioAtual.uid,
+
+                    imagem
+
+                );
 
             }
-
-            // Salva localmente por enquanto
-            localStorage.setItem(
-                "fotoPerfil",
-                imagem
-            );
 
         };
 
         leitor.readAsDataURL(arquivo);
 
-    });
+    };
 
 }
 
@@ -193,7 +189,7 @@ if (selecionarFoto) {
 
 if (editarNome) {
 
-    editarNome.addEventListener("click", async () => {
+    editarNome.onclick = async () => {
 
         if (!usuarioAtual) return;
 
@@ -206,11 +202,14 @@ if (editarNome) {
         try {
 
             await updateProfile(usuarioAtual, {
-                displayName: novoNome
+                displayName: novoNome.trim()
             });
 
             if (nomeUsuario) {
-                nomeUsuario.textContent = novoNome;
+
+                nomeUsuario.textContent =
+                novoNome.trim();
+
             }
 
             alert("Nome atualizado com sucesso!");
@@ -223,7 +222,7 @@ if (editarNome) {
 
         }
 
-    });
+    };
 
 }
 
@@ -235,22 +234,29 @@ if (editarNome) {
 
 if (sair) {
 
-    sair.addEventListener("click", async () => {
+    sair.onclick = async () => {
 
         try {
 
             await signOut(auth);
 
-            window.location.href = "login.html";
+            window.location.href =
+            "login.html";
 
         } catch (erro) {
 
             console.error(erro);
 
-            alert("Erro ao sair da conta.");
+            alert("Erro ao sair.");
 
         }
 
-    });
+    };
 
 }
+
+
+
+// ==============================
+// FIM DO ARQUIVO
+// ==============================w
